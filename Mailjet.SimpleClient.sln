@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mailjet.SimpleClient.Entities", "src\Mailjet.SimpleClient.Entities\Mailjet.SimpleClient.Entities.csproj", "{FA5FD49A-C613-4ACF-A19C-6833F2B0EBD8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EAD50E13-C4C0-43C3-BF1C-2BBB9F02A784}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{AE36A47E-0AD2-498F-BE89-0087B3506EBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mailjet.SimpleClient.UnitTests", "tests\Mailjet.SimpleClient.UnitTests\Mailjet.SimpleClient.UnitTests.csproj", "{003D7E48-ED1F-48B3-A6DB-CF0743B19A15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mailjet.SimpleClient.Client", "src\Mailjet.SimpleClient.Client\Mailjet.SimpleClient.Client.csproj", "{DFC658C1-D452-4D47-9A81-5417732E0FCA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA5FD49A-C613-4ACF-A19C-6833F2B0EBD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA5FD49A-C613-4ACF-A19C-6833F2B0EBD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA5FD49A-C613-4ACF-A19C-6833F2B0EBD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA5FD49A-C613-4ACF-A19C-6833F2B0EBD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{003D7E48-ED1F-48B3-A6DB-CF0743B19A15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{003D7E48-ED1F-48B3-A6DB-CF0743B19A15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{003D7E48-ED1F-48B3-A6DB-CF0743B19A15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{003D7E48-ED1F-48B3-A6DB-CF0743B19A15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFC658C1-D452-4D47-9A81-5417732E0FCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFC658C1-D452-4D47-9A81-5417732E0FCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFC658C1-D452-4D47-9A81-5417732E0FCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFC658C1-D452-4D47-9A81-5417732E0FCA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FA5FD49A-C613-4ACF-A19C-6833F2B0EBD8} = {AE36A47E-0AD2-498F-BE89-0087B3506EBF}
+		{003D7E48-ED1F-48B3-A6DB-CF0743B19A15} = {EAD50E13-C4C0-43C3-BF1C-2BBB9F02A784}
+		{DFC658C1-D452-4D47-9A81-5417732E0FCA} = {AE36A47E-0AD2-498F-BE89-0087B3506EBF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE67B65C-D8B0-47B7-96B2-215DCEC91F52}
+	EndGlobalSection
+EndGlobal
