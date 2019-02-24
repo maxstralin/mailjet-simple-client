@@ -5,14 +5,21 @@ using System.Text;
 
 namespace Mailjet.SimpleClient.Entities.Models
 {
-    public class TemplateEmailMessage : ITemplateEmailMessage
+    public class TemplateEmailMessage : ITemplateEmailMessage, IEmailMessage
     {
-        public int TemplateId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IDictionary<string, object> Variables { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public bool UseTemplateLanguage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IEmailEntity From { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IEnumerable<IEmailEntity> To { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IEnumerable<IEmailEntity> Cc { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IEnumerable<IEmailEntity> Bcc { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public TemplateEmailMessage(int templateId)
+        {
+            TemplateId = templateId;
+        }
+        public int TemplateId { get; set; }
+        public IDictionary<string, object> Variables { get; set; }
+        public bool UseTemplateLanguage { get; set; }
+        public IEmailEntity From { get; set; }
+        public IEnumerable<IEmailEntity> To { get; set; }
+        public IEnumerable<IEmailEntity> Cc { get; set; }
+        public IEnumerable<IEmailEntity> Bcc { get; set; }
+        string IEmailMessage.HtmlBody { get => null; set => throw new InvalidOperationException("HtmlBody cannot be set for templated messages"); }
+        string IEmailMessage.PlainTextBody { get => null; set => throw new InvalidOperationException("PlainTextBody cannot be set for templated messages"); }
+        public string Id { get; set; }
     }
 }

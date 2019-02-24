@@ -9,5 +9,6 @@ namespace Mailjet.SimpleClient.Entities.Models
     {
         public string PublicKey { get; set; }
         public string PrivateKey { get; set; }
+        public EmailApiVersion ApiVersion { get; set; }
     }
 }

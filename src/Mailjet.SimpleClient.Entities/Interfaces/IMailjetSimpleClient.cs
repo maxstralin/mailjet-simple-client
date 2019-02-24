@@ -4,11 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Mailjet.SimpleClient.Entities.Interfaces
 {
     public interface IMailjetSimpleClient
     {
-        HttpResponseMessage SendRequest(IRequest request);
+        Task<HttpResponseMessage> SendRequestAsync(IRequestFactory request);
     }
 }

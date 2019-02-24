@@ -3,31 +3,33 @@ using Mailjet.SimpleClient.Entities.Models;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Mailjet.SimpleClient.Client
 {
-    public class MailjetSimpleClient : IVersionedClient, IVersionlessClient
+    public class MailjetSimpleClient : IVersionedClient, IVersionlessClient, IMailjetSimpleClient
     {
-        public virtual ApiVersion ApiVersion { get; protected set; }
-        public virtual IMailjetOptions MailjetOptions { get; } = new MailjetOptions();
-        
-        protected MailjetSimpleClient(ApiVersion apiVersion, Action<IMailjetOptions> options) : this(options)
+        public ApiVersion ApiVersion { get => MailjetOptions.ApiVersion; set => MailjetOptions.ApiVersion = value; }
+        public IMailjetOptions MailjetOptions { get; protected set; } = null;
+        public MailjetSimpleClient(IMailjetOptions options)
         {
-            ApiVersion = apiVersion;
+            MailjetOptions = options;
         }
-        protected MailjetSimpleClient(Action<IMailjetOptions> options)
-        {
-            options(MailjetOptions);
-        }
-        
-        public virtual IVersionedClient SetVersion(ApiVersion apiVersion)
+        public IVersionedClient SetVersion(ApiVersion apiVersion)
         {
             ApiVersion = apiVersion;
             return this;
         }
+        
+        public Task<HttpResponseMessage> SendRequestAsync(IRequestFactory request)
+        {
+            return SendRequestAsync(ApiVersion, request);
+        }
 
-        public static IVersionedClient Create(ApiVersion apiVersion, Action<IMailjetOptions> options, ) => new MailjetSimpleClient(apiVersion, options);
-        public static IVersionlessClient Create(Action<IMailjetOptions> options) => new MailjetSimpleClient(options);
+        public Task<HttpResponseMessage> SendRequestAsync(ApiVersion apiVersion, IRequestFactory request)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

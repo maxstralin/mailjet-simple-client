@@ -9,6 +9,5 @@ namespace Mailjet.SimpleClient.Entities.Interfaces
         string HtmlBody { get; set; }
         string PlainTextBody { get; set; }
         bool UseTemplateLanguage { get; set; }
-        IDictionary<string, object> Variables { get; set; }
     }
 }

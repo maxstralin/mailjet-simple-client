@@ -10,5 +10,7 @@ namespace Mailjet.SimpleClient.Entities.Models
         public string PublicKey { get; set; }
         public string PrivateKey { get; set; }
         public string Token { get; set; }
+        public ApiVersion ApiVersion { get; set; }
+        EmailApiVersion IMailjetEmailOptions.ApiVersion { get => (EmailApiVersion)ApiVersion; set { ApiVersion = (ApiVersion)value; } }
     }
 }

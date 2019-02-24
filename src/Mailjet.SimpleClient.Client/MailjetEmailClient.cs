@@ -1,68 +1,61 @@
 ﻿using Mailjet.SimpleClient.Entities.Exceptions;
 using Mailjet.SimpleClient.Entities.Interfaces;
 using Mailjet.SimpleClient.Entities.Models;
+using Mailjet.SimpleClient.Entities.Models.Requests;
+using Mailjet.SimpleClient.Entities.Resolvers;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Mailjet.SimpleClient.Client
 {
-    public class MailjetEmailClient : IMailjetEmailClient
+    public class MailjetEmailClient : MailjetSimpleClient, IVersionedClient
     {
-        protected MailjetEmailClient(EmailApiVersion emailApiVersion)
+        public MailjetEmailClient(IMailjetEmailOptions options) : base(new MailjetOptions
         {
+            ApiVersion = (ApiVersion)options.ApiVersion,
+            PrivateKey = options.PrivateKey,
+            PublicKey = options.PublicKey
+        })
+        {
+            //TODO: Implement EmailApiVersion.V3
+            if (ApiVersion != EmailApiVersion.V3_1) throw new UnsupportedApiVersionException();
         }
 
-        public EmailApiVersion ApiVersion { get; }
+        public new EmailApiVersion ApiVersion { get => (EmailApiVersion)base.ApiVersion; }
 
-        public IMailjetEmailOptions MailjetEmailOptions { get; } = new MailjetEmailOptions();
+        public IMailjetEmailOptions MailjetEmailOptions { get => MailjetOptions; }
 
         ApiVersion IVersionedClient.ApiVersion => (ApiVersion)ApiVersion;
 
-        private JToken GetJToken(IEmailMessage emailMessage)
+        Task<HttpResponseMessage> IMailjetSimpleClient.SendRequestAsync(IRequestFactory request)
         {
-            switch (ApiVersion)
-            {
-                //TODO: Implement contract resolver
-                case EmailApiVersion.V3:
-                    throw new UnsupportedApiVersionException();
-                case EmailApiVersion.V3_1:
-                    return JToken.FromObject(emailMessage);
-                default:
-                    throw new UnsupportedApiVersionException();
-            }
+            throw new NotImplementedException();
         }
 
         public void Send(IEnumerable<IEmailMessage> emailMessages)
         {
-            JToken.FromObject(emailMessages, new Newtonsoft.Json.JsonSerializer
-            {
-                ContractResolver = new DefaultContractResolver()
-            });
-        }
-        HttpResponseMessage IMailjetSimpleClient.SendRequest(IRequest request)
-        {
-            throw new NotImplementedException();
+
         }
 
-        public void Send(IEmailMessage emailMessage)
+        public void SendAsync(IEmailMessage emailMessage)
         {
-            throw new NotImplementedException();
+            //3.1 wants an array of email messages
         }
 
-        public void Send(ITemplateEmailMessage templateEmailMessage)
-        {
-            throw new NotImplementedException();
-        }
+        //public void Send(ITemplateEmailMessage templateEmailMessage)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void Send(IEnumerable<ITemplateEmailMessage> templateEmailMessages)
-        {
-            throw new NotImplementedException();
-        }
-        public void Send(params ITemplateEmailMessage[] templateEmailMessages) => Send(templateEmailMessages);
-
+        //public void Send(IEnumerable<ITemplateEmailMessage> templateEmailMessages)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

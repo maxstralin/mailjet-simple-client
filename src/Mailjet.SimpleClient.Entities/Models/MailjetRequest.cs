@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Mailjet.SimpleClient.Entities.Models
 {
-    public class MailjetRequest : IRequest
+    public class MailjetRequest : IRequestFactory
     {
         private readonly JToken data;
         private readonly HttpMethod httpMethod;

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Mailjet.SimpleClient.Entities.Interfaces
 {
-    public interface IRequest
+    public interface IRequestFactory
     {
         HttpRequestMessage CreateRequest();
     }
