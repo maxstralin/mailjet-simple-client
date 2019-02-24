@@ -8,5 +8,6 @@ namespace Mailjet.SimpleClient.Entities.Interfaces
     public interface IMailjetOptions : IMailjetSmsOptions, IMailjetEmailOptions
     {
         new ApiVersion ApiVersion { get; set; }
+        bool SandboxMode { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace Mailjet.SimpleClient.Entities.Models.Requests
         public JToken RequestBody { get; protected set; }
         protected string UserAgent = "mailjet-simple-client/1.0";
         public AuthenticationHeaderValue AuthenticationHeaderValue { get; protected set; }
+        public HttpMethod HttpMethod { get; protected set; }
 
         protected virtual StringContent CreateStringContent(JToken requestBody)
         {
@@ -36,7 +37,8 @@ namespace Mailjet.SimpleClient.Entities.Models.Requests
             var msg = new HttpRequestMessage
             {
                 Content = CreateStringContent(RequestBody),
-                RequestUri = new Uri($"{BaseUrl}{Path}")
+                RequestUri = new Uri($"{BaseUrl}{Path}"),
+                Method = HttpMethod 
             };
             msg.Headers.Authorization = AuthenticationHeaderValue;
             return msg;

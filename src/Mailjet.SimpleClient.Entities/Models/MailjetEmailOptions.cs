@@ -9,6 +9,9 @@ namespace Mailjet.SimpleClient.Entities.Models
     {
         public string PublicKey { get; set; }
         public string PrivateKey { get; set; }
-        public EmailApiVersion ApiVersion { get; set; }
+        /// <summary>
+        /// Defaults to 3.1
+        /// </summary>
+        public EmailApiVersion ApiVersion { get; set; } = EmailApiVersion.V3_1;
     }
 }

@@ -11,35 +11,30 @@ namespace Mailjet.SimpleClient.Entities.Models.Requests
 {
     public class SendEmailRequest : BaseRequest
     {
-        public SendEmailRequest(IEnumerable<IEmailMessage> emailMessages, IMailjetEmailOptions mailjetEmailOptions)
+        public SendEmailRequest(IEnumerable<IEmailMessage> emailMessages, IMailjetEmailOptions options)
         {
             if (emailMessages == null)
             {
                 throw new ArgumentNullException(nameof(emailMessages));
             }
 
-            if (mailjetEmailOptions == null)
-            {
-                throw new ArgumentNullException(nameof(mailjetEmailOptions));
-            }
+            MailjetEmailOptions = options ?? throw new ArgumentNullException(nameof(options));
+            if (MailjetEmailOptions.ApiVersion != EmailApiVersion.V3_1) throw new UnsupportedApiVersionException();
 
-            if (mailjetEmailOptions.ApiVersion != EmailApiVersion.V3_1) throw new UnsupportedApiVersionException();
-
-            EmailApiVersion = mailjetEmailOptions.ApiVersion;
-            PrivateKey = mailjetEmailOptions.PrivateKey;
-            PublicKey = mailjetEmailOptions.PublicKey;
-            var basicAuthValue = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{PublicKey}:{PrivateKey}"));
-            AuthenticationHeaderValue = new AuthenticationHeaderValue("Basic", basicAuthValue);
+            AuthenticationHeaderValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{MailjetEmailOptions.PublicKey}:{MailjetEmailOptions.PrivateKey}")));
 
             SetRequestBody(new { Messages = emailMessages });
+            Path = "V3.1/send";
         }
         public SendEmailRequest(IEmailMessage emailMessage, IMailjetEmailOptions mailjetEmailOptions) : this(new[] { emailMessage }, mailjetEmailOptions)
         {
 
         }
 
-        public EmailApiVersion EmailApiVersion { get; }
-        public string PrivateKey { get; }
-        public string PublicKey { get; }
+        public IMailjetEmailOptions MailjetEmailOptions { get; } = new MailjetEmailOptions();
+
+        //public EmailApiVersion EmailApiVersion { get; }
+        //public string PrivateKey { get; }
+        //public string PublicKey { get; }
     }
 }

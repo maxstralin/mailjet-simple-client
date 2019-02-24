@@ -2,7 +2,6 @@
 using Mailjet.SimpleClient.Entities.Interfaces;
 using Mailjet.SimpleClient.Entities.Models;
 using Mailjet.SimpleClient.Entities.Models.Requests;
-using Mailjet.SimpleClient.Entities.Resolvers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
@@ -38,24 +37,14 @@ namespace Mailjet.SimpleClient.Client
             throw new NotImplementedException();
         }
 
-        public void Send(IEnumerable<IEmailMessage> emailMessages)
+        public Task<IResponse> SendAsync(IEnumerable<IEmailMessage> emailMessages)
         {
-
+            throw new NotImplementedException();
         }
 
-        public void SendAsync(IEmailMessage emailMessage)
+        public Task<IResponse> SendAsync(IEmailMessage emailMessage)
         {
-            //3.1 wants an array of email messages
+            throw new NotImplementedException();
         }
-
-        //public void Send(ITemplateEmailMessage templateEmailMessage)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void Send(IEnumerable<ITemplateEmailMessage> templateEmailMessages)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }
