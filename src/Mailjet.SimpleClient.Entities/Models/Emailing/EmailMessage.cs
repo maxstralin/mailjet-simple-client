@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Mailjet.SimpleClient.Entities.Models
+namespace Mailjet.SimpleClient.Entities.Models.Emailing
 {
     //TODO: JsonConstructor for deserialising (can't deserialise to interfaces)
     //TODO: Add plenty more properties, e.g. TemplateErrorReporting, Attachments, etc: https://dev.mailjet.com/guides/?csharp#send-api-json-properties

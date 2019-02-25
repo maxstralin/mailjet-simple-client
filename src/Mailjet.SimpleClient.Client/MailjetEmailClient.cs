@@ -1,6 +1,7 @@
 ﻿using Mailjet.SimpleClient.Entities.Exceptions;
 using Mailjet.SimpleClient.Entities.Interfaces;
 using Mailjet.SimpleClient.Entities.Models;
+using Mailjet.SimpleClient.Entities.Models.Options;
 using Mailjet.SimpleClient.Entities.Models.Requests;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mailjet.SimpleClient.Entities.Models
+namespace Mailjet.SimpleClient.Entities.Models.Options
 {
     public enum ApiVersion
     {

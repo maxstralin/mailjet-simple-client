@@ -1,4 +1,5 @@
 ﻿using Mailjet.SimpleClient.Entities.Models;
+using Mailjet.SimpleClient.Entities.Models.Options;
 using System;
 using System.Collections.Generic;
 using System.Text;

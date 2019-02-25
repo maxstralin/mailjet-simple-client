@@ -1,4 +1,5 @@
 ﻿using Mailjet.SimpleClient.Entities.Models;
+using Mailjet.SimpleClient.Entities.Models.Options;
 
 namespace Mailjet.SimpleClient.Entities.Interfaces
 {
