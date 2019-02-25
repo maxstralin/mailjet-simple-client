@@ -29,6 +29,15 @@ namespace Mailjet.SimpleClient.Tests
         };
 
         [Fact]
+        public void Test_ValidateOptionsAreSetCorrectly()
+        {
+            var client = new MailjetEmailClient(options);
+            Assert.True(options.ApiVersion == client.MailjetEmailOptions.ApiVersion);
+            Assert.True(options.PrivateKey == client.MailjetEmailOptions.PrivateKey);
+            Assert.True(options.PublicKey == client.MailjetEmailOptions.PublicKey);
+        }
+
+        [Fact]
         public void Test_V3_1DefaultInMailjetEmailOptions()
         {
             var apiVersion = EmailApiVersion.V3_1;

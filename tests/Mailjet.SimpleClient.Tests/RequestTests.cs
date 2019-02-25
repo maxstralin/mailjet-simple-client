@@ -88,5 +88,18 @@ namespace Mailjet.SimpleClient.Tests
             Assert.True(message.Headers.UserAgent.Single().Product.ToString() == req.UserAgent);
         }
 
+        [Fact]
+        public void Test_SendEmailRequestShouldNotAcceptNulls()
+        {
+            Assert.Throws<ArgumentNullException>(() => new SendEmailRequest((IEnumerable<IEmailMessage>)null, options));
+            Assert.Throws<ArgumentNullException>(() => new SendEmailRequest(Enumerable.Empty<IEmailMessage>(), null));
+        }
+
+        [Fact]
+        public void Test_SendEmailRequestShouldNotEmptyArray()
+        {
+            Assert.Throws<ArgumentException>(() => new SendEmailRequest(Enumerable.Empty<IEmailMessage>(), options));
+        }
+
     }
 }

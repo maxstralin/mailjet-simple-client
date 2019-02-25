@@ -27,6 +27,8 @@ namespace Mailjet.SimpleClient.Client
         }
 
         public new EmailApiVersion ApiVersion { get => (EmailApiVersion)base.ApiVersion; }
+        private new IMailjetOptions MailjetOptions { get; set; } = null;
+
 
         public IMailjetEmailOptions MailjetEmailOptions { get => MailjetOptions; }
 

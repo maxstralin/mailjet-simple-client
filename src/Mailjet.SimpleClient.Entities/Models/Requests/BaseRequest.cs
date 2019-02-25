@@ -19,14 +19,6 @@ namespace Mailjet.SimpleClient.Entities.Models.Requests
         public AuthenticationHeaderValue AuthenticationHeaderValue { get; protected set; }
         public HttpMethod HttpMethod { get; protected set; }
 
-        //protected BaseRequest(string path, HttpMethod httpMethod, JToken requestBody, AuthenticationHeaderValue authenticationHeaderValue) 
-        //{
-        //    Path = path ?? throw new ArgumentNullException(nameof(path));
-        //    HttpMethod = httpMethod ?? throw new ArgumentNullException(nameof(httpMethod));
-        //    RequestBody = requestBody ?? throw new ArgumentNullException(nameof(requestBody));
-        //    AuthenticationHeaderValue = authenticationHeaderValue ?? throw new ArgumentNullException(nameof(authenticationHeaderValue));
-        //}
-
         protected virtual StringContent CreateStringContent(JToken requestBody)
         {
             return new StringContent(requestBody.ToString(), Encoding.UTF8, "application/json");
