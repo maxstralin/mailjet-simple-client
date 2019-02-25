@@ -12,6 +12,8 @@ namespace Mailjet.SimpleClient.Entities.Models.Requests
 {
     public class SendEmailRequest : BaseRequest
     {
+        public IMailjetEmailOptions MailjetEmailOptions { get; } = new MailjetEmailOptions();
+        
         public SendEmailRequest(IEnumerable<IEmailMessage> emailMessages, IMailjetEmailOptions options)
         {
             if (emailMessages == null)
@@ -32,11 +34,5 @@ namespace Mailjet.SimpleClient.Entities.Models.Requests
         {
 
         }
-
-        public IMailjetEmailOptions MailjetEmailOptions { get; } = new MailjetEmailOptions();
-
-        //public EmailApiVersion EmailApiVersion { get; }
-        //public string PrivateKey { get; }
-        //public string PublicKey { get; }
     }
 }

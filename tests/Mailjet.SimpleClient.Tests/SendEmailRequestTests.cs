@@ -79,16 +79,6 @@ namespace Mailjet.SimpleClient.Tests
         }
 
         [Fact]
-        public void Test_ValidateUserAgent()
-        {
-            var msg = new EmailMessage();
-            var req = new SendEmailRequest(new[] { msg }, options);
-            var message = req.CreateRequest();
-            
-            Assert.True(message.Headers.UserAgent.Single().Product.ToString() == req.UserAgent);
-        }
-
-        [Fact]
         public void Test_SendEmailRequestShouldNotAcceptNulls()
         {
             Assert.Throws<ArgumentNullException>(() => new SendEmailRequest((IEnumerable<IEmailMessage>)null, options));

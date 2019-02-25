@@ -23,7 +23,6 @@ namespace Mailjet.SimpleClient.Entities.Models.Requests
         {
             return new StringContent(requestBody.ToString(), Encoding.UTF8, "application/json");
         }
-
         protected void SetRequestBody(object obj, JsonSerializer jsonSerializer = null)
         {
             var serialiser = jsonSerializer ?? new JsonSerializer
