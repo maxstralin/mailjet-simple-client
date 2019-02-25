@@ -8,5 +8,6 @@ namespace Mailjet.SimpleClient.Entities.Interfaces
         string PublicKey { get; set; }
         string PrivateKey { get; set; }
         EmailApiVersion ApiVersion { get; set; }
+        bool SandboxMode { get; set; }
     }
 }

@@ -13,5 +13,9 @@ namespace Mailjet.SimpleClient.Entities.Models.Options
         /// Defaults to 3.1
         /// </summary>
         public EmailApiVersion ApiVersion { get; set; } = EmailApiVersion.V3_1;
+        /// <summary>
+        /// If only to validate the request but not actually send it. Defaults to fale
+        /// </summary>
+        public bool SandboxMode { get; set; } = false;
     }
 }
