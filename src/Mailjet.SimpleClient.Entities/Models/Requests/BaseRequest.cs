@@ -13,10 +13,19 @@ namespace Mailjet.SimpleClient.Entities.Models.Requests
     {
         public string BaseUrl { get; protected set; } = "https://api.mailjet.com";
         public string Path { get; protected set; } = string.Empty;
+        public string FullUrl => $"{BaseUrl}{Path}";
+        public string UserAgent => "mailjet-simple-client/1.0";
         public JToken RequestBody { get; protected set; }
-        protected string UserAgent = "mailjet-simple-client/1.0";
         public AuthenticationHeaderValue AuthenticationHeaderValue { get; protected set; }
         public HttpMethod HttpMethod { get; protected set; }
+
+        //protected BaseRequest(string path, HttpMethod httpMethod, JToken requestBody, AuthenticationHeaderValue authenticationHeaderValue) 
+        //{
+        //    Path = path ?? throw new ArgumentNullException(nameof(path));
+        //    HttpMethod = httpMethod ?? throw new ArgumentNullException(nameof(httpMethod));
+        //    RequestBody = requestBody ?? throw new ArgumentNullException(nameof(requestBody));
+        //    AuthenticationHeaderValue = authenticationHeaderValue ?? throw new ArgumentNullException(nameof(authenticationHeaderValue));
+        //}
 
         protected virtual StringContent CreateStringContent(JToken requestBody)
         {
@@ -37,10 +46,11 @@ namespace Mailjet.SimpleClient.Entities.Models.Requests
             var msg = new HttpRequestMessage
             {
                 Content = CreateStringContent(RequestBody),
-                RequestUri = new Uri($"{BaseUrl}{Path}"),
-                Method = HttpMethod 
+                RequestUri = new Uri(FullUrl),
+                Method = HttpMethod,
             };
             msg.Headers.Authorization = AuthenticationHeaderValue;
+            msg.Headers.UserAgent.ParseAdd(UserAgent);
             return msg;
         }
     }
