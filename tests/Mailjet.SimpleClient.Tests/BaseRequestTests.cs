@@ -33,6 +33,18 @@ namespace Mailjet.SimpleClient.Tests
         }
 
         [Fact]
+        public void Test_ValidateSerialisation()
+        {
+            var req = new BaseRequestTestClass();
+            var obj = new { a = (string)null, b = true, c = false };
+
+            req.SetRequestBody(obj);
+
+            Assert.Equal(req.RequestBody.Value<bool>(nameof(obj.b)), obj.b);
+            Assert.Equal(req.RequestBody.Value<bool>(nameof(obj.c)), obj.c);
+        }
+
+        [Fact]
         public void Test_ValidateUserAgent()
         {
             var req = new BaseRequestTestClass();
