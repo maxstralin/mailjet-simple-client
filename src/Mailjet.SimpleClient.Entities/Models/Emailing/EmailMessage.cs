@@ -11,10 +11,21 @@ namespace Mailjet.SimpleClient.Entities.Models.Emailing
     //TODO: Add plenty more properties, e.g. TemplateErrorReporting, Attachments, etc: https://dev.mailjet.com/guides/?csharp#send-api-json-properties
     public class EmailMessage : IEmailMessage
     {
+        /// <summary>
+        /// Initialise an email with an IEmailEntity
+        /// </summary>
+        /// <param name="from">An email entity instance</param>
         public EmailMessage(IEmailEntity from)
         {
             From = from ?? throw new ArgumentNullException(nameof(from));
         }
+        /// <summary>
+        /// Initialise an email message with a name and email
+        /// </summary>
+        /// <param name="senderName">Name in From</param>
+        /// <param name="senderEmail">Email in From</param>
+        public EmailMessage(string senderName, string senderEmail) : this(new EmailEntity(senderName, senderEmail)) { }
+
         public IEnumerable<IEmailEntity> To { get; set; } = Enumerable.Empty<IEmailEntity>();
         public IEmailEntity From { get; set; }
         public IEnumerable<IEmailEntity> Cc { get; set; } = Enumerable.Empty<IEmailEntity>();
