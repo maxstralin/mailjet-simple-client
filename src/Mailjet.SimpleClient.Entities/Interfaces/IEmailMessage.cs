@@ -13,13 +13,5 @@ namespace Mailjet.SimpleClient.Entities.Interfaces
         /// Subject of the email
         /// </summary>
         string Subject { get; set; }
-        /// <summary>
-        /// HTML body of the email
-        /// </summary>
-        string HtmlBody { get; set; }
-        /// <summary>
-        /// Plain text body of the email
-        /// </summary>
-        string PlainTextBody { get; set; }
     }
 }

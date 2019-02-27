@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Mailjet.SimpleClient.Entities.Interfaces;
 using Mailjet.SimpleClient.Entities.Models.Emailing;
+using Mailjet.SimpleClient.Entities.Models.Errors;
 using Newtonsoft.Json.Linq;
 
 namespace Mailjet.SimpleClient.Entities.Models.Responses

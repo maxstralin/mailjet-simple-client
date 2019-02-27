@@ -26,5 +26,15 @@ namespace Mailjet.SimpleClient.Entities.Models.Options
                    ApiVersion == options.ApiVersion &&
                    SandboxMode == options.SandboxMode;
         }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 1653785258;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PublicKey);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PrivateKey);
+            hashCode = hashCode * -1521134295 + ApiVersion.GetHashCode();
+            hashCode = hashCode * -1521134295 + SandboxMode.GetHashCode();
+            return hashCode;
+        }
     }
 }

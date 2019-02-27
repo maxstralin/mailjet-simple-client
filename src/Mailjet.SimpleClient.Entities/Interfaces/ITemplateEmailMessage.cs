@@ -19,6 +19,6 @@ namespace Mailjet.SimpleClient.Entities.Interfaces
         /// <summary>
         /// The ID of the template 
         /// </summary>
-        T TemplateId { get; set; }
+        T TemplateId { get; }
     }
 }
