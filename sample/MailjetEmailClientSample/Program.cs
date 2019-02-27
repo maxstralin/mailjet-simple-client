@@ -27,7 +27,7 @@ namespace MailjetEmailClientSample
             var successful = await client.SendAsync(message);
 
             //Send a template email
-            var templateMessage = new TemplateEmailMessage(templateId: 123, from: message.From)
+            var templateMessage = new TemplateEmailMessage(templateId: 711944, from: message.From)
             {
                 To = message.To
             };
@@ -37,9 +37,6 @@ namespace MailjetEmailClientSample
             message.To = new List<EmailEntity> {  };
             //Will indicate an error
             var error = await client.SendAsync(message);
-
-            
-
         }
     }
 }
