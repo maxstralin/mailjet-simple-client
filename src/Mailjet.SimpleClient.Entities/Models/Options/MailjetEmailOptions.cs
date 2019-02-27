@@ -17,5 +17,14 @@ namespace Mailjet.SimpleClient.Entities.Models.Options
         /// If only to validate the request but not actually send it. Defaults to fale
         /// </summary>
         public bool SandboxMode { get; set; } = false;
+
+        public override bool Equals(object obj)
+        {
+            return obj is MailjetEmailOptions options &&
+                   PublicKey == options.PublicKey &&
+                   PrivateKey == options.PrivateKey &&
+                   ApiVersion == options.ApiVersion &&
+                   SandboxMode == options.SandboxMode;
+        }
     }
 }

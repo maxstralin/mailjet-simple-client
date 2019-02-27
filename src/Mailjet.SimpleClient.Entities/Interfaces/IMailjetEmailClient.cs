@@ -7,9 +7,6 @@ namespace Mailjet.SimpleClient.Entities.Interfaces
 {
     public interface IMailjetEmailClient<TResponse> where TResponse : class
     {
-        EmailApiVersion ApiVersion { get; }
-        IMailjetEmailOptions MailjetEmailOptions { get; }
-
         Task<IResponse<TResponse>> SendAsync(IEmailMessage emailMessage);
         Task<IResponse<TResponse>> SendAsync(IEnumerable<IEmailMessage> emailMessages);
     }

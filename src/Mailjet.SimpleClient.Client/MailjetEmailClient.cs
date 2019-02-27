@@ -17,25 +17,28 @@ namespace Mailjet.SimpleClient.Client
 {
     public class MailjetEmailClient : MailjetSimpleClient, IMailjetEmailClient<SendEmailResponse>
     {
-        public MailjetEmailClient(IMailjetEmailOptions options) : base(new MailjetOptions
+        public MailjetEmailClient(Action<IMailjetEmailOptions> options)
         {
-            ApiVersion = (ApiVersion)options.ApiVersion,
-            PrivateKey = options.PrivateKey,
-            PublicKey = options.PublicKey
-        })
-        {
-            //TODO: Implement EmailApiVersion.V3
-            if (ApiVersion != EmailApiVersion.V3_1) throw new UnsupportedApiVersionException();
+            SetOptions(new MailjetEmailOptions());
+            options(Options);
         }
 
-        public new EmailApiVersion ApiVersion { get => (EmailApiVersion)base.ApiVersion; }
-        private new IMailjetOptions MailjetOptions { get => base.MailjetOptions; }
+        public MailjetEmailClient(IMailjetEmailOptions options)
+        {
+            SetOptions(options);
+        }
 
-        public IMailjetEmailOptions MailjetEmailOptions { get => MailjetOptions; }
+        private void SetOptions(IMailjetEmailOptions options)
+        {
+            Options = options ?? throw new ArgumentNullException(nameof(options));
+            if (Options.ApiVersion != EmailApiVersion.V3_1) throw new UnsupportedApiVersionException();
+        }
+
+        public IMailjetEmailOptions Options { get; private set; } = null;
 
         public async Task<IResponse<SendEmailResponse>> SendAsync(IEnumerable<IEmailMessage> emailMessages)
         {
-            var res = await SendRequestAsync(new SendEmailRequest(emailMessages, MailjetEmailOptions));
+            var res = await SendRequestAsync(new SendEmailRequest(emailMessages, Options));
 
             return res.WithData<SendEmailResponse>();
         }

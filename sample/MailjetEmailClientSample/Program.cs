@@ -11,9 +11,10 @@ namespace MailjetEmailClientSample
     {
         static async Task Main(string[] args)
         {
+            string stuff() => Environment.GetEnvironmentVariable("MAILJET_PRIVATE_KEY");
             var client = new MailjetEmailClient(new MailjetEmailOptions
             {
-                PrivateKey = Environment.GetEnvironmentVariable("MAILJET_PRIVATE_KEY"),
+                PrivateKey = stuff(),
                 PublicKey = Environment.GetEnvironmentVariable("MAILJET_PUBLIC_KEY"),
                 SandboxMode = true
             });

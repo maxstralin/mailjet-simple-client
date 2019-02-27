@@ -14,13 +14,9 @@ namespace Mailjet.SimpleClient.Client
     {
         private readonly HttpClient httpClient;
 
-        public ApiVersion ApiVersion { get => MailjetOptions.ApiVersion; set => MailjetOptions.ApiVersion = value; }
-        public IMailjetOptions MailjetOptions { get; protected set; } = null;
-
-        public MailjetSimpleClient(IMailjetOptions options) : this(options, null) { }
-        public MailjetSimpleClient(IMailjetOptions options, HttpClient httpClient)
+        public MailjetSimpleClient() : this(null) { }
+        public MailjetSimpleClient(HttpClient httpClient)
         {
-            MailjetOptions = options ?? throw new ArgumentNullException(nameof(options));
             this.httpClient = httpClient ?? new HttpClient();
         }
 

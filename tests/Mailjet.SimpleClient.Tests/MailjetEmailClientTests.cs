@@ -30,12 +30,28 @@ namespace Mailjet.SimpleClient.Tests
         };
 
         [Fact]
-        public void Test_ValidateOptionsAreSetCorrectly()
+        public void Test_ValidateOptionsInstance()
         {
             var client = new MailjetEmailClient(options);
-            Assert.True(options.ApiVersion == client.MailjetEmailOptions.ApiVersion);
-            Assert.True(options.PrivateKey == client.MailjetEmailOptions.PrivateKey);
-            Assert.True(options.PublicKey == client.MailjetEmailOptions.PublicKey);
+            
+            
+            Assert.Same(options, client.Options);
+            Assert.Equal(options, client.Options);
+        }
+
+        [Fact]
+        public void Test_ValidateOptionsProperties()
+        {
+            var client = new MailjetEmailClient((opt) =>
+            {
+                opt.PrivateKey = options.PrivateKey;
+                opt.PublicKey = options.PublicKey;
+                opt.SandboxMode = options.SandboxMode;
+                opt.ApiVersion = options.ApiVersion;
+            });
+
+            Assert.NotSame(options, client.Options);
+            Assert.Equal(options, client.Options);
         }
 
         [Fact]

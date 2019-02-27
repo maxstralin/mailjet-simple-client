@@ -12,6 +12,5 @@ namespace Mailjet.SimpleClient.Entities.Interfaces
     public interface IMailjetSimpleClient
     {
         Task<IResponse> SendRequestAsync(IRequestFactory request);
-        ApiVersion ApiVersion { get; }
     }
 }
