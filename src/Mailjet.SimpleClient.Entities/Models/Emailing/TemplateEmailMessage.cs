@@ -1,25 +1,18 @@
 ﻿using Mailjet.SimpleClient.Entities.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Mailjet.SimpleClient.Entities.Models.Emailing
 {
-    public class TemplateEmailMessage : ITemplateEmailMessage, IEmailMessage
+    public class TemplateEmailMessage : EmailMessage, ITemplateEmailMessage
     {
-        public TemplateEmailMessage(int templateId)
+        public TemplateEmailMessage(int templateId, IEmailEntity from) : base(from)
         {
             TemplateId = templateId;
         }
+        [JsonProperty(PropertyName = "TemplateID")]
         public int TemplateId { get; set; }
-        public IDictionary<string, object> Variables { get; set; }
-        public bool UseTemplateLanguage { get; set; }
-        public IEmailEntity From { get; set; }
-        public IEnumerable<IEmailEntity> To { get; set; }
-        public IEnumerable<IEmailEntity> Cc { get; set; }
-        public IEnumerable<IEmailEntity> Bcc { get; set; }
-        string IEmailMessage.HtmlBody { get => null; set => throw new InvalidOperationException("HtmlBody cannot be set for templated messages"); }
-        string IEmailMessage.PlainTextBody { get => null; set => throw new InvalidOperationException("PlainTextBody cannot be set for templated messages"); }
-        public string Id { get; set; }
     }
 }

@@ -27,14 +27,14 @@ namespace Mailjet.SimpleClient.Tests
         public void Test_OnlyV3_1Supported()
         {
             options.ApiVersion = EmailApiVersion.V3;
-            Action action = () => new SendEmailRequest(new EmailMessage(), options);
+            Action action = () => new SendEmailRequest(new EmailMessage(null), options);
             Assert.Throws<UnsupportedApiVersionException>(action);
         }
 
         [Fact]
         public void Test_MessagesAreAlwaysInArray()
         {
-            var msg = new EmailMessage();
+            var msg = new EmailMessage(null);
             var singleMessageInArray = new SendEmailRequest(new[] { msg }, options);
             var twoMessages = new SendEmailRequest(new[] { msg, msg }, options);
             var singleMessage = new SendEmailRequest(msg, options);
@@ -47,7 +47,7 @@ namespace Mailjet.SimpleClient.Tests
         [Fact]
         public void Test_ValidateMessageCountInRequest()
         {
-            var msg = new EmailMessage();
+            var msg = new EmailMessage(null);
             var singleMessageInArray = new SendEmailRequest(new[] { msg }, options);
             var twoMessages = new SendEmailRequest(new[] { msg, msg }, options);
             var singleMessage = new SendEmailRequest(msg, options);
@@ -60,7 +60,7 @@ namespace Mailjet.SimpleClient.Tests
         [Fact]
         public void Test_AuthenicationHeaderSetCorrectly()
         {
-            var msg = new EmailMessage();
+            var msg = new EmailMessage(null);
             var expectedResult = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{options.PublicKey}:{options.PrivateKey}"));
             var scheme = "Basic";
 
@@ -73,7 +73,7 @@ namespace Mailjet.SimpleClient.Tests
         [Fact]
         public void Test_IgnoreSerialisingNullValues()
         {
-            var msg = new EmailMessage();
+            var msg = new EmailMessage(null);
             var req = new SendEmailRequest(new[] { msg }, options);
             Assert.Null(msg.Id);
             //Note that if the value doesn't exit, it returns null. If the value exists, it return a JValue with the value of null!
@@ -91,6 +91,14 @@ namespace Mailjet.SimpleClient.Tests
         public void Test_SendEmailRequestShouldNotEmptyArray()
         {
             Assert.Throws<ArgumentException>(() => new SendEmailRequest(Enumerable.Empty<IEmailMessage>(), options));
+        }
+
+        [Fact]
+        public void Test_ValidatePath()
+        {
+            var path = "v3.1/send";
+            var req = new SendEmailRequest(new EmailMessage(null), options);
+            Assert.Equal(path, req.Path);
         }
 
     }

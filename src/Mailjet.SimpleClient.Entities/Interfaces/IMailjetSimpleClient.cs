@@ -1,4 +1,5 @@
 ﻿using Mailjet.SimpleClient.Entities.Models;
+using Mailjet.SimpleClient.Entities.Models.Options;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace Mailjet.SimpleClient.Entities.Interfaces
 {
     public interface IMailjetSimpleClient
     {
-        Task<HttpResponseMessage> SendRequestAsync(IRequestFactory request);
+        Task<IResponse> SendRequestAsync(IRequestFactory request);
+        ApiVersion ApiVersion { get; }
     }
 }

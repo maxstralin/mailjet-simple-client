@@ -1,17 +1,16 @@
-﻿using Mailjet.SimpleClient.Entities.Models;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Mailjet.SimpleClient.Entities.Interfaces;
 using Mailjet.SimpleClient.Entities.Models.Options;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Mailjet.SimpleClient.Entities.Interfaces
 {
-    public interface IMailjetEmailClient : IVersionedClient
+    public interface IMailjetEmailClient<TResponse> where TResponse : class
     {
-        new EmailApiVersion ApiVersion { get; }
-        void Send(IEmailMessage emailMessage);
-        void Send(ITemplateEmailMessage templateEmailMessage);
-        void Send(IEnumerable<ITemplateEmailMessage> templateEmailMessages);
-        void Send(IEnumerable<IEmailMessage> emailMessages);
+        EmailApiVersion ApiVersion { get; }
+        IMailjetEmailOptions MailjetEmailOptions { get; }
+
+        Task<IResponse<TResponse>> SendAsync(IEmailMessage emailMessage);
+        Task<IResponse<TResponse>> SendAsync(IEnumerable<IEmailMessage> emailMessages);
     }
 }

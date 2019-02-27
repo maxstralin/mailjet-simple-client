@@ -1,16 +1,18 @@
 ﻿using Mailjet.SimpleClient.Entities.Interfaces;
 using Mailjet.SimpleClient.Entities.Models;
 using Mailjet.SimpleClient.Entities.Models.Options;
+using Mailjet.SimpleClient.Entities.Models.Responses;
 using Newtonsoft.Json.Linq;
 using System;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Mailjet.SimpleClient.Client
 {
-    public class MailjetSimpleClient : IVersionedClient, IVersionlessClient, IMailjetSimpleClient
+    public class MailjetSimpleClient : IMailjetSimpleClient
     {
-        private readonly HttpClient httpClient;        
+        private readonly HttpClient httpClient;
 
         public ApiVersion ApiVersion { get => MailjetOptions.ApiVersion; set => MailjetOptions.ApiVersion = value; }
         public IMailjetOptions MailjetOptions { get; protected set; } = null;
@@ -22,20 +24,14 @@ namespace Mailjet.SimpleClient.Client
             this.httpClient = httpClient ?? new HttpClient();
         }
 
-        public IVersionedClient SetVersion(ApiVersion apiVersion)
+        public async Task<IResponse> SendRequestAsync(IRequestFactory request)
         {
-            ApiVersion = apiVersion;
-            return this;
-        }
+            var req = request.CreateRequest();
+            var res = await httpClient.SendAsync(req);
 
-        public Task<HttpResponseMessage> SendRequestAsync(IRequestFactory request)
-        {
-            return SendRequestAsync(ApiVersion, request);
-        }
+            var content = await res.Content.ReadAsStringAsync();
 
-        public Task<HttpResponseMessage> SendRequestAsync(ApiVersion apiVersion, IRequestFactory request)
-        {
-            throw new NotImplementedException();
+            return new Response(JToken.Parse(content), (int)res.StatusCode, res.IsSuccessStatusCode);
         }
     }
 

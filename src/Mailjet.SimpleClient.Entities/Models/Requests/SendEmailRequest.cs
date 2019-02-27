@@ -30,9 +30,9 @@ namespace Mailjet.SimpleClient.Entities.Models.Requests
 
             AuthenticationHeaderValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{MailjetEmailOptions.PublicKey}:{MailjetEmailOptions.PrivateKey}")));
 
-            SetRequestBody(new { Messages = emailMessages });
+            SetRequestBody(new { Messages = emailMessages, SandboxMode = options.SandboxMode });
             HttpMethod = new HttpMethod("POST");
-            Path = "V3.1/send";
+            Path = "v3.1/send";
         }
         public SendEmailRequest(IEmailMessage emailMessage, IMailjetEmailOptions mailjetEmailOptions) : this(new[] { emailMessage }, mailjetEmailOptions)
         {

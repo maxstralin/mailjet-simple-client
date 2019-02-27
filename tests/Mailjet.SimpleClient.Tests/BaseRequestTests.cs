@@ -13,6 +13,7 @@ namespace Mailjet.SimpleClient.Tests
         public BaseRequestTestClass()
         {
             HttpMethod = new System.Net.Http.HttpMethod("GET");
+            Path = "test-1";
         }
         public new void SetRequestBody(object obj, JsonSerializer jsonSerializer = null) => base.SetRequestBody(obj, jsonSerializer: null);
     }
@@ -41,6 +42,19 @@ namespace Mailjet.SimpleClient.Tests
 
             Assert.True(message.Headers.UserAgent.Single().Product.ToString() == req.UserAgent);
         }
+
+        [Fact]
+        public void Test_ValidateUrl()
+        {
+            var req = new BaseRequestTestClass();
+
+            req.SetRequestBody(new { });
+
+
+
+            Assert.Equal($@"{req.BaseUrl}/{req.Path}", req.FullUrl);
+        }
+
     }
 
 }

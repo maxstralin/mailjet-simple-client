@@ -1,4 +1,5 @@
 ﻿using Mailjet.SimpleClient.Entities.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,13 @@ namespace Mailjet.SimpleClient.Entities.Models.Emailing
         public IEnumerable<IEmailEntity> Bcc { get; set; } = Enumerable.Empty<IEmailEntity>();
         public IDictionary<string, object> Variables { get; set; } = new Dictionary<string, object>();
 
+        [JsonProperty(PropertyName = "HtmlPart")]
         public string HtmlBody { get; set; }
+        [JsonProperty(PropertyName = "TextPart")]
         public string PlainTextBody { get; set; }
+        [JsonProperty(PropertyName = "TemplateLanguage")]
         public bool UseTemplateLanguage { get; set; }
         public string Id { get; set; }
+        public string Subject { get; set; }
     }
 }

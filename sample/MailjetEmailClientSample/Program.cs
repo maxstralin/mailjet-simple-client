@@ -17,12 +17,14 @@ namespace MailjetEmailClientSample
                 PublicKey = Environment.GetEnvironmentVariable("MAILJET_PUBLIC_KEY"),
                 SandboxMode = true
             });
-            var message = new EmailMessage(new EmailEntity("Max Strålin", "cool-cat@devmasters.se"))
+            var message = new EmailMessage(new EmailEntity("Max Strålin", "max.stralin@devmasters.se"))
             {
                 To = new List<EmailEntity> { new EmailEntity("Max Strålin", "max.stralin@devmasters.se") },
                 HtmlBody = @"<div>Fantastic sample email. Need a job?</div>"
             };
             var res = await client.SendAsync(message);
+            message.To = new List<EmailEntity> { new EmailEntity("Max Strålin", "max.stralin@devmasters.se") };
+            var res2 = await client.SendAsync(message);
         }
     }
 }

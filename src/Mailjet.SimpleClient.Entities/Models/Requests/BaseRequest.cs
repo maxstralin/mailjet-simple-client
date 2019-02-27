@@ -13,7 +13,7 @@ namespace Mailjet.SimpleClient.Entities.Models.Requests
     {
         public string BaseUrl { get; protected set; } = "https://api.mailjet.com";
         public string Path { get; protected set; } = string.Empty;
-        public string FullUrl => $"{BaseUrl}{Path}";
+        public string FullUrl => $"{BaseUrl}/{Path}";
         public string UserAgent => "mailjet-simple-client/1.0";
         public JToken RequestBody { get; protected set; }
         public AuthenticationHeaderValue AuthenticationHeaderValue { get; protected set; }

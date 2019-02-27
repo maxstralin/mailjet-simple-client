@@ -7,10 +7,13 @@ namespace Mailjet.SimpleClient.Entities.Interfaces
 {
     public interface IResponse
     {
+        int StatusCode { get; }
+        bool Successful { get; }
         JToken RawResponse { get; }
+        IResponse<T> WithData<T>() where T : class;
     }
-    public interface IResponse<T> : IResponse
+    public interface IResponse<T> : IResponse where T : class
     {
-        T Response { get; }
+        T Data { get; }
     }
 }
