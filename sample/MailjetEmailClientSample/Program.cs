@@ -9,7 +9,7 @@ namespace MailjetEmailClientSample
 {
     class Program
     {
-        static async Task Main(string[] args)
+        private static async Task Main()
         {
             //Can also be through a configuration action, e.g. (opt) => { PrivateKey = "" }
             var client = new MailjetEmailClient(new MailjetEmailOptions
@@ -25,18 +25,22 @@ namespace MailjetEmailClientSample
             };
             //A successful message in sandbox mode
             var successful = await client.SendAsync(message);
+            if (!successful.Successful) throw new Exception("This request should be successful");
 
             //Send a template email
             var templateMessage = new TemplateEmailMessage(templateId: 711944, from: message.From)
             {
                 To = message.To
             };
-            var res = await client.SendAsync(templateMessage);
+            var successfulTemplate = await client.SendAsync(templateMessage);
+            if (!successfulTemplate.Successful) throw new Exception("This request should be successful");
 
             //Let's empty the recipients list, making the request invalid
+            // ReSharper disable once RedundantEmptyObjectOrCollectionInitializer
             message.To = new List<EmailEntity> {  };
             //Will indicate an error
             var error = await client.SendAsync(message);
+            if (error.Successful) throw new Exception("This request should be unsuccessful");
         }
     }
 }

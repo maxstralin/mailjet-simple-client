@@ -1,7 +1,4 @@
-﻿using Mailjet.SimpleClient.Entities.Models.Responses;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Mailjet.SimpleClient.Entities.Interfaces
 {

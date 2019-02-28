@@ -1,10 +1,7 @@
 ﻿using Mailjet.SimpleClient.Entities.Interfaces;
-using Mailjet.SimpleClient.Entities.Models;
-using Mailjet.SimpleClient.Entities.Models.Options;
 using Mailjet.SimpleClient.Entities.Models.Responses;
 using Newtonsoft.Json.Linq;
 using System;
-using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 

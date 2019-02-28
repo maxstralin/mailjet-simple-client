@@ -1,7 +1,4 @@
 ﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Mailjet.SimpleClient.Entities.Interfaces
 {
@@ -27,7 +24,7 @@ namespace Mailjet.SimpleClient.Entities.Interfaces
     /// An API response with a specific response data type
     /// </summary>
     /// <typeparam name="T">The type of the response data</typeparam>
-    public interface IResponse<T> : IResponse where T : class
+    public interface IResponse<out T> : IResponse where T : class
     {
         /// <summary>
         /// The deserialised data received back from the API

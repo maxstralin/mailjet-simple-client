@@ -1,6 +1,5 @@
 ﻿using Mailjet.SimpleClient.Entities.Exceptions;
 using Mailjet.SimpleClient.Entities.Interfaces;
-using Mailjet.SimpleClient.Entities.Models;
 using Mailjet.SimpleClient.Entities.Models.Emailing;
 using Mailjet.SimpleClient.Entities.Models.Options;
 using Mailjet.SimpleClient.Entities.Models.Requests;
@@ -27,8 +26,9 @@ namespace Mailjet.SimpleClient.Tests
         public void Test_OnlyV3_1Supported()
         {
             options.ApiVersion = EmailApiVersion.V3;
-            Action action = () => new SendEmailRequest(new EmailMessage("Test", "dummy@test.dev"), options);
-            Assert.Throws<UnsupportedApiVersionException>(action);
+            // ReSharper disable once ObjectCreationAsStatement
+            void Action() => new SendEmailRequest(new EmailMessage("Test", "dummy@test.dev"), options);
+            Assert.Throws<UnsupportedApiVersionException>((Action) Action);
         }
 
         [Fact]

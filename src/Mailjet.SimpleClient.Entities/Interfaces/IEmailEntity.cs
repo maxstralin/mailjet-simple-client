@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Mailjet.SimpleClient.Entities.Interfaces
+﻿namespace Mailjet.SimpleClient.Entities.Interfaces
 {
     /// <summary>
     /// An IEmailEntity may be a recipient or a sender

@@ -1,7 +1,4 @@
 ﻿using Mailjet.SimpleClient.Entities.Models.Emailing;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Mailjet.SimpleClient.Tests

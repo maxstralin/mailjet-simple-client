@@ -1,16 +1,10 @@
 ﻿using Mailjet.SimpleClient.Entities.Exceptions;
 using Mailjet.SimpleClient.Entities.Interfaces;
-using Mailjet.SimpleClient.Entities.Models;
 using Mailjet.SimpleClient.Entities.Models.Options;
 using Mailjet.SimpleClient.Entities.Models.Requests;
 using Mailjet.SimpleClient.Entities.Models.Responses;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Mailjet.SimpleClient.Client
@@ -34,7 +28,7 @@ namespace Mailjet.SimpleClient.Client
             if (Options.ApiVersion != EmailApiVersion.V3_1) throw new UnsupportedApiVersionException();
         }
 
-        public IMailjetEmailOptions Options { get; private set; } = null;
+        public IMailjetEmailOptions Options { get; private set; }
 
         public async Task<ISendEmailResponse> SendAsync(IEnumerable<IEmailMessage> emailMessages)
         {

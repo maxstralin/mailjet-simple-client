@@ -2,7 +2,6 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Mailjet.SimpleClient.Entities.Models.Responses
 {
@@ -14,6 +13,7 @@ namespace Mailjet.SimpleClient.Entities.Models.Responses
         }
         public SendEmailResponse(IEnumerable<ISendEmailResponseEntry> data, IResponse response) : this(data, response.RawResponse, response.StatusCode, response.Successful) { }
 
-        public IEnumerable<ISendEmailResponseEntry> Data { get; private set; }
+        //public IEnumerable<ISendEmailResponseEntry> Data { get; private set; }
+        public IEnumerable<ISendEmailResponseEntry> Data { get; }
     }
 }

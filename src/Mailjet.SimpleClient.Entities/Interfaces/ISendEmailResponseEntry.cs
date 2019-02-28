@@ -1,8 +1,4 @@
-﻿using Mailjet.SimpleClient.Entities.Models.Errors;
-using Mailjet.SimpleClient.Entities.Models.Responses;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Mailjet.SimpleClient.Entities.Interfaces
 {
@@ -12,7 +8,6 @@ namespace Mailjet.SimpleClient.Entities.Interfaces
         IEnumerable<ISendEmailResponseResult> Bcc { get; set; }
         IEnumerable<ISendEmailResponseResult> Cc { get; set; }
         IEnumerable<ISendEmailError> Errors { get; set; }
-        string Status { get; set; }
         bool Successful { get; }
         
     }
