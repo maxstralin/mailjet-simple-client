@@ -12,22 +12,28 @@ namespace Mailjet.SimpleClient.Client
 {
     public class MailjetSimpleClient : IMailjetSimpleClient
     {
-        private readonly HttpClient httpClient;
+        private HttpClient HttpClient { get; set; }
 
         public MailjetSimpleClient() : this(null) { }
         public MailjetSimpleClient(HttpClient httpClient)
         {
-            this.httpClient = httpClient ?? new HttpClient();
+            UseHttpClient(httpClient ?? new HttpClient());
         }
 
         public async Task<IResponse> SendRequestAsync(IRequestFactory request)
         {
             var req = request.CreateRequest();
-            var res = await httpClient.SendAsync(req);
+            var res = await HttpClient.SendAsync(req);
 
             var content = await res.Content.ReadAsStringAsync();
 
             return new Response(JToken.Parse(content), (int)res.StatusCode, res.IsSuccessStatusCode);
+        }
+
+        public void UseHttpClient(HttpClient httpClient)
+        {
+
+            HttpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
     }
 

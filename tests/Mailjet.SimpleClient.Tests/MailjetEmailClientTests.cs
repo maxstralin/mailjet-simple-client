@@ -4,6 +4,8 @@ using Mailjet.SimpleClient.Entities.Interfaces;
 using Mailjet.SimpleClient.Entities.Models;
 using Mailjet.SimpleClient.Entities.Models.Options;
 using Mailjet.SimpleClient.Entities.Models.Requests;
+using Mailjet.SimpleClient.Tests.Mocks;
+using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Moq.Protected;
 using Newtonsoft.Json.Linq;
@@ -68,5 +70,53 @@ namespace Mailjet.SimpleClient.Tests
             options.ApiVersion = EmailApiVersion.V3;
             Assert.Throws<UnsupportedApiVersionException>(() => new MailjetEmailClient(options));
         }
+
+        [Fact]
+        public void Test_ValidateDefaultDependencyInjection()
+        {
+            var services = new ServiceCollection();
+
+            services.AddMailjetEmailClient(options);
+
+            var serviceProvider = services.BuildServiceProvider();
+            var resolvedOptions = serviceProvider.GetRequiredService<IMailjetEmailOptions>();
+            var resolvedClient = serviceProvider.GetRequiredService<IMailjetEmailClient>();
+
+            Assert.Equal(resolvedOptions, options);
+            Assert.IsAssignableFrom<IMailjetEmailClient>(resolvedClient);
+            Assert.IsType<MailjetEmailClient>(resolvedClient);
+            Assert.NotNull(resolvedClient);
+        }
+
+        [Fact]
+        public void Test_ValidateOptionsByActionDependencyInjection()
+        {
+            var services = new ServiceCollection();
+
+            services.AddMailjetEmailClient((opt) => opt.PrivateKey = options.PrivateKey);
+
+            var serviceProvider = services.BuildServiceProvider();
+            var resolvedOptions = serviceProvider.GetRequiredService<IMailjetEmailOptions>();
+            var resolvedClient = serviceProvider.GetRequiredService<IMailjetEmailClient>();
+
+            Assert.Equal(resolvedOptions.PrivateKey, options.PrivateKey);
+            Assert.IsAssignableFrom<IMailjetEmailClient>(resolvedClient);
+            Assert.IsType<MailjetEmailClient>(resolvedClient);
+            Assert.NotNull(resolvedClient);
+        }
+
+        [Fact]
+        public void Test_ValidateCustomImplementationDependencyInjection()
+        {
+            var services = new ServiceCollection();
+            services.AddMailjetEmailClient<MailjetEmailClientMock>();
+            var serviceProvider = services.BuildServiceProvider();
+            var resolvedClient = serviceProvider.GetRequiredService<IMailjetEmailClient>();
+
+            Assert.IsAssignableFrom<IMailjetEmailClient>(resolvedClient);
+            Assert.IsType<MailjetEmailClientMock>(resolvedClient);
+            Assert.NotNull(resolvedClient);
+        }
+
     }
 }

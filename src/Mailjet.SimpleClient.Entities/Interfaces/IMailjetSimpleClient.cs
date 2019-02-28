@@ -20,5 +20,12 @@ namespace Mailjet.SimpleClient.Entities.Interfaces
         /// <param name="requestFactory">The factory which create the request</param>
         /// <returns>A generic response</returns>
         Task<IResponse> SendRequestAsync(IRequestFactory requestFactory);
+
+        /// <summary>
+        /// Set the HttpClient to be used for requests
+        /// </summary>
+        /// <param name="httpClient">HttpClient instance</param>
+        void UseHttpClient(HttpClient httpClient);
+
     }
 }

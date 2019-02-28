@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Mailjet.SimpleClient.Client
 {
-    public class MailjetEmailClient : MailjetSimpleClient, IMailjetEmailClient<SendEmailResponse>
+    public class MailjetEmailClient : MailjetSimpleClient, IMailjetEmailClient
     {
         public MailjetEmailClient(Action<IMailjetEmailOptions> options)
         {
@@ -36,14 +36,13 @@ namespace Mailjet.SimpleClient.Client
 
         public IMailjetEmailOptions Options { get; private set; } = null;
 
-        public async Task<IResponse<SendEmailResponse>> SendAsync(IEnumerable<IEmailMessage> emailMessages)
+        public async Task<ISendEmailResponse> SendAsync(IEnumerable<IEmailMessage> emailMessages)
         {
             var res = await SendRequestAsync(new SendEmailRequest(emailMessages, Options));
-
-            return res.WithData<SendEmailResponse>();
+            return new SendEmailResponse(res.RawResponse["Messages"].ToObject<List<SendEmailResponseEntry>>(), res);
         }
 
-        public Task<IResponse<SendEmailResponse>> SendAsync(IEmailMessage emailMessage)
+        public Task<ISendEmailResponse> SendAsync(IEmailMessage emailMessage)
         {
             return SendAsync(new[] { emailMessage });
         }

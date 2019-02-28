@@ -8,10 +8,9 @@ namespace Mailjet.SimpleClient.Entities.Interfaces
     /// <summary>
     /// A client for interacting with Mailjet for the purpose of sending emails
     /// </summary>
-    /// <typeparam name="TResponse">Type of the response after sending an email</typeparam>
-    public interface IMailjetEmailClient<TResponse> where TResponse : class
+    public interface IMailjetEmailClient
     {
-        Task<IResponse<TResponse>> SendAsync(IEmailMessage emailMessage);
-        Task<IResponse<TResponse>> SendAsync(IEnumerable<IEmailMessage> emailMessages);
+        Task<ISendEmailResponse> SendAsync(IEmailMessage emailMessage);
+        Task<ISendEmailResponse> SendAsync(IEnumerable<IEmailMessage> emailMessages);
     }
 }
