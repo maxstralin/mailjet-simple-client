@@ -1,13 +1,13 @@
-﻿using Mailjet.SimpleClient.Entities.Exceptions;
-using Mailjet.SimpleClient.Entities.Interfaces;
-using Mailjet.SimpleClient.Entities.Models.Emailing;
-using Mailjet.SimpleClient.Entities.Models.Options;
-using Mailjet.SimpleClient.Entities.Models.Requests;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Mailjet.SimpleClient.Core.Exceptions;
+using Mailjet.SimpleClient.Core.Interfaces;
+using Mailjet.SimpleClient.Core.Models.Emailing;
+using Mailjet.SimpleClient.Core.Models.Options;
+using Mailjet.SimpleClient.Core.Models.Requests;
 using Xunit;
 
 namespace Mailjet.SimpleClient.Tests

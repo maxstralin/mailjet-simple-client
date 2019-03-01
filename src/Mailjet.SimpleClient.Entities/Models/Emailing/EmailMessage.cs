@@ -1,8 +1,8 @@
-﻿using Mailjet.SimpleClient.Entities.Interfaces;
+﻿using System;
+using Mailjet.SimpleClient.Core.Interfaces;
 using Newtonsoft.Json;
-using System;
 
-namespace Mailjet.SimpleClient.Entities.Models.Emailing
+namespace Mailjet.SimpleClient.Core.Models.Emailing
 {
     //TODO: JsonConstructor for deserialising (can't deserialise to interfaces)
     //TODO: Add plenty more properties, e.g. TemplateErrorReporting, Attachments, etc: https://dev.mailjet.com/guides/?csharp#send-api-json-properties

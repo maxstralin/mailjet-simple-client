@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace Mailjet.SimpleClient.Entities.Interfaces
+namespace Mailjet.SimpleClient.Core.Interfaces
 {
     /// <summary>
     /// An API response
@@ -19,7 +19,10 @@ namespace Mailjet.SimpleClient.Entities.Interfaces
         /// Raw JSON data
         /// </summary>
         JToken RawResponse { get; }
+
+        IError Error { get; }
     }
+    /// <inheritdoc />
     /// <summary>
     /// An API response with a specific response data type
     /// </summary>

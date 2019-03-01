@@ -1,9 +1,10 @@
-﻿using Mailjet.SimpleClient.Entities.Interfaces;
-using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Mailjet.SimpleClient.Core.Converters;
+using Mailjet.SimpleClient.Core.Interfaces;
+using Newtonsoft.Json;
 
-namespace Mailjet.SimpleClient.Entities.Models.Emailing
+namespace Mailjet.SimpleClient.Core.Models.Emailing
 {
     public abstract class BaseEmailMessage : IEmailMessage
     {

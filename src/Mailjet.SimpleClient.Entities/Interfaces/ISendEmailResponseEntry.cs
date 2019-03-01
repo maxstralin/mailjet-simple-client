@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Mailjet.SimpleClient.Entities.Interfaces
+namespace Mailjet.SimpleClient.Core.Interfaces
 {
     public interface ISendEmailResponseEntry
     {
@@ -9,6 +9,5 @@ namespace Mailjet.SimpleClient.Entities.Interfaces
         IEnumerable<ISendEmailResponseResult> Cc { get; set; }
         IEnumerable<ISendEmailError> Errors { get; set; }
         bool Successful { get; }
-        
     }
 }

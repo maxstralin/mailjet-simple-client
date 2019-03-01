@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Mailjet.SimpleClient.Client;
-using Mailjet.SimpleClient.Entities.Extensions;
-using Mailjet.SimpleClient.Entities.Interfaces;
-using Mailjet.SimpleClient.Entities.Models.Responses;
+using Mailjet.SimpleClient.Core.Extensions;
+using Mailjet.SimpleClient.Core.Interfaces;
+using Mailjet.SimpleClient.Core.Models.Responses;
+using Mailjet.SimpleClient.Extensions;
 using Mailjet.SimpleClient.Tests.Mocks;
 using Mailjet.SimpleClient.Tests.Static;
 using Microsoft.Extensions.DependencyInjection;

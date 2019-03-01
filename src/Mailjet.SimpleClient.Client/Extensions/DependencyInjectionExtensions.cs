@@ -1,9 +1,9 @@
-﻿using Mailjet.SimpleClient.Entities.Interfaces;
-using Mailjet.SimpleClient.Entities.Models.Options;
+﻿using System;
+using Mailjet.SimpleClient.Core.Interfaces;
+using Mailjet.SimpleClient.Core.Models.Options;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
-namespace Mailjet.SimpleClient.Client
+namespace Mailjet.SimpleClient.Extensions
 {
     public static class DependencyInjectionExtensions
     {
@@ -33,12 +33,11 @@ namespace Mailjet.SimpleClient.Client
         }
 
         /// <summary>
-        /// Add your own implementation of a client
+        /// Add your own implementation of a client. Note that this does not add <c>IMailjetEmailOptions</c> as a service as it makes no assumption on your implementation
         /// </summary>
         /// <typeparam name="T">An IMailjetEmailClient</typeparam>
         /// <param name="serviceDescriptors">Service collection</param>
         /// <param name="serviceLifetime">Lifetime of your client, defaults to Transient</param>
-        /// <remarks>Note that this does not add <c>IMailjetEmailOptions</c> as a service as it makes no assumption on your implementation</remarks>
         public static void AddMailjetEmailClient<T>(this IServiceCollection serviceDescriptors, ServiceLifetime serviceLifetime = ServiceLifetime.Transient) where T : class, IMailjetEmailClient
         {
             serviceDescriptors.Add(new ServiceDescriptor(typeof(IMailjetEmailClient), typeof(T), serviceLifetime));

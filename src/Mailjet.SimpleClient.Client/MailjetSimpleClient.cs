@@ -1,11 +1,11 @@
-﻿using Mailjet.SimpleClient.Entities.Interfaces;
-using Mailjet.SimpleClient.Entities.Models.Responses;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Mailjet.SimpleClient.Core.Interfaces;
+using Mailjet.SimpleClient.Core.Models.Responses;
+using Newtonsoft.Json.Linq;
 
-namespace Mailjet.SimpleClient.Client
+namespace Mailjet.SimpleClient
 {
     public class MailjetSimpleClient : IMailjetSimpleClient
     {

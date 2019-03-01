@@ -1,8 +1,8 @@
-﻿using Mailjet.SimpleClient.Entities.Interfaces;
-using System;
+﻿using System;
 using System.Text.RegularExpressions;
+using Mailjet.SimpleClient.Core.Interfaces;
 
-namespace Mailjet.SimpleClient.Entities.Models.Emailing
+namespace Mailjet.SimpleClient.Core.Models.Emailing
 {
     /// <summary>
     /// An EmailEntity may be a recipient or a sender

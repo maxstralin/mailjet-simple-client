@@ -1,6 +1,6 @@
-﻿using Mailjet.SimpleClient.Entities.Models.Responses;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using Mailjet.SimpleClient.Core.Models.Responses;
 using Xunit;
 
 namespace Mailjet.SimpleClient.Tests

@@ -1,27 +1,16 @@
-﻿using Mailjet.SimpleClient.Entities.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Mailjet.SimpleClient.Core.Interfaces;
 
-namespace Mailjet.SimpleClient.Entities.Models.Errors
+namespace Mailjet.SimpleClient.Core.Models.Errors
 {
-    public class SendEmailError : ISendEmailError
+    public class SendEmailError : Error, ISendEmailError
     {
-        /// <summary>
-        /// Mailjet's error ID
-        /// </summary>
-        public string ErrorIdentifier { get; set; }
         /// <summary>
         /// Error code, e.g. MJ-004
         /// </summary>
         public string ErrorCode { get; set; }
-        /// <summary>
-        /// Status code 
-        /// </summary>
-        public int StatusCode { get; set; }
-        /// <summary>
-        /// Human-readable error message
-        /// </summary>
-        public string ErrorMessage { get; set; }
+        
         /// <summary>
         /// The properties the error(s) are related to
         /// </summary>

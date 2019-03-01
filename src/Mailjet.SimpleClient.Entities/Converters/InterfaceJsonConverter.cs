@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
+using Newtonsoft.Json;
 
-namespace Mailjet.SimpleClient.Entities
+namespace Mailjet.SimpleClient.Core.Converters
 {
     public class InterfaceJsonConverter<TConcrete> : JsonConverter where TConcrete : class
     {

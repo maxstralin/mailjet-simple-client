@@ -1,14 +1,14 @@
-﻿using Mailjet.SimpleClient.Entities.Exceptions;
-using Mailjet.SimpleClient.Entities.Interfaces;
-using Mailjet.SimpleClient.Entities.Models.Options;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using Mailjet.SimpleClient.Core.Exceptions;
+using Mailjet.SimpleClient.Core.Interfaces;
+using Mailjet.SimpleClient.Core.Models.Options;
 
-namespace Mailjet.SimpleClient.Entities.Models.Requests
+namespace Mailjet.SimpleClient.Core.Models.Requests
 {
     public class SendEmailRequest : BaseRequest
     {

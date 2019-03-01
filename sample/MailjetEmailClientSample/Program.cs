@@ -1,9 +1,9 @@
-﻿using Mailjet.SimpleClient.Client;
-using Mailjet.SimpleClient.Entities.Models.Emailing;
-using Mailjet.SimpleClient.Entities.Models.Options;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Mailjet.SimpleClient;
+using Mailjet.SimpleClient.Core.Models.Emailing;
+using Mailjet.SimpleClient.Core.Models.Options;
 
 namespace MailjetEmailClientSample
 {

@@ -1,8 +1,8 @@
-﻿using Mailjet.SimpleClient.Entities.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Mailjet.SimpleClient.Core.Interfaces;
 
-namespace Mailjet.SimpleClient.Entities.Extensions
+namespace Mailjet.SimpleClient.Core.Extensions
 {
     public static class ResponseExtensions
     {

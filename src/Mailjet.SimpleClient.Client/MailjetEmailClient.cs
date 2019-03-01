@@ -1,13 +1,13 @@
-﻿using Mailjet.SimpleClient.Entities.Exceptions;
-using Mailjet.SimpleClient.Entities.Interfaces;
-using Mailjet.SimpleClient.Entities.Models.Options;
-using Mailjet.SimpleClient.Entities.Models.Requests;
-using Mailjet.SimpleClient.Entities.Models.Responses;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Mailjet.SimpleClient.Core.Exceptions;
+using Mailjet.SimpleClient.Core.Interfaces;
+using Mailjet.SimpleClient.Core.Models.Options;
+using Mailjet.SimpleClient.Core.Models.Requests;
+using Mailjet.SimpleClient.Core.Models.Responses;
 
-namespace Mailjet.SimpleClient.Client
+namespace Mailjet.SimpleClient
 {
     public class MailjetEmailClient : MailjetSimpleClient, IMailjetEmailClient
     {
@@ -33,7 +33,7 @@ namespace Mailjet.SimpleClient.Client
         public async Task<ISendEmailResponse> SendAsync(IEnumerable<IEmailMessage> emailMessages)
         {
             var res = await SendRequestAsync(new SendEmailRequest(emailMessages, Options));
-            return new SendEmailResponse(res.RawResponse["Messages"].ToObject<List<SendEmailResponseEntry>>(), res);
+            return new SendEmailResponse(res.RawResponse["Messages"]?.ToObject<List<SendEmailResponseEntry>>(), res);
         }
 
         public Task<ISendEmailResponse> SendAsync(IEmailMessage emailMessage)

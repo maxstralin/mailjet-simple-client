@@ -1,4 +1,4 @@
-﻿namespace Mailjet.SimpleClient.Entities.Models.Options
+﻿namespace Mailjet.SimpleClient.Core.Models.Options
 {
     public enum ApiVersion
     {

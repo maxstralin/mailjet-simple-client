@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mailjet.SimpleClient.Entities.Exceptions
+namespace Mailjet.SimpleClient.Core.Exceptions
 {
     public class UnsupportedApiVersionException : Exception
     {

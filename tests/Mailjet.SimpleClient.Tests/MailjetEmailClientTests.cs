@@ -1,6 +1,5 @@
-using Mailjet.SimpleClient.Client;
-using Mailjet.SimpleClient.Entities.Exceptions;
-using Mailjet.SimpleClient.Entities.Models.Options;
+using Mailjet.SimpleClient.Core.Exceptions;
+using Mailjet.SimpleClient.Core.Models.Options;
 using Mailjet.SimpleClient.Tests.Static;
 using Xunit;
 

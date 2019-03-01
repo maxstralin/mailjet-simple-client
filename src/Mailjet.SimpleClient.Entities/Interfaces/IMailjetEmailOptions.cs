@@ -1,6 +1,6 @@
-﻿using Mailjet.SimpleClient.Entities.Models.Options;
+﻿using Mailjet.SimpleClient.Core.Models.Options;
 
-namespace Mailjet.SimpleClient.Entities.Interfaces
+namespace Mailjet.SimpleClient.Core.Interfaces
 {
     /// <summary>
     /// Options for Mailjet's email API

@@ -1,8 +1,8 @@
-﻿using Mailjet.SimpleClient.Entities.Interfaces;
+﻿using Mailjet.SimpleClient.Core.Interfaces;
 
 // ReSharper disable NonReadonlyMemberInGetHashCode
 
-namespace Mailjet.SimpleClient.Entities.Models.Options
+namespace Mailjet.SimpleClient.Core.Models.Options
 {
     public class MailjetEmailOptions : IMailjetEmailOptions
     {

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Mailjet.SimpleClient.Entities.Interfaces;
-using Mailjet.SimpleClient.Entities.Models.Errors;
+using Mailjet.SimpleClient.Core.Interfaces;
+using Mailjet.SimpleClient.Core.Models.Errors;
 
-namespace Mailjet.SimpleClient.Entities.Models.Responses
+namespace Mailjet.SimpleClient.Core.Models.Responses
 {
     public class SendEmailResponseEntry : ISendEmailResponseEntry
     {

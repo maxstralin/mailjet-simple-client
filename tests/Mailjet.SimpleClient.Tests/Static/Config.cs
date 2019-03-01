@@ -1,5 +1,5 @@
-﻿using Mailjet.SimpleClient.Entities.Interfaces;
-using Mailjet.SimpleClient.Entities.Models.Options;
+﻿using Mailjet.SimpleClient.Core.Interfaces;
+using Mailjet.SimpleClient.Core.Models.Options;
 
 namespace Mailjet.SimpleClient.Tests.Static
 {

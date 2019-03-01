@@ -1,6 +1,6 @@
 ﻿using System.Net.Http;
 
-namespace Mailjet.SimpleClient.Entities.Interfaces
+namespace Mailjet.SimpleClient.Core.Interfaces
 {
     /// <summary>
     /// Something that is able to create a HttpRequestMessage

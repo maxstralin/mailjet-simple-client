@@ -1,4 +1,4 @@
-﻿namespace Mailjet.SimpleClient.Entities.Interfaces
+﻿namespace Mailjet.SimpleClient.Core.Interfaces
 {
     /// <inheritdoc />
     public interface ITemplateEmailMessage : ITemplateEmailMessage<int>
