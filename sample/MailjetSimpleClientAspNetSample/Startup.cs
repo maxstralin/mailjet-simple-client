@@ -21,7 +21,6 @@ namespace MailjetSimpleClientAspNetSample
             //Register default email client with action configuration
             services.AddMailjetEmailClient((opt) =>
             {
-                opt.ApiVersion = EmailApiVersion.V3_1;
                 opt.SandboxMode = true;
                 opt.PrivateKey = "";
                 opt.PublicKey = "";
@@ -30,7 +29,6 @@ namespace MailjetSimpleClientAspNetSample
             //Equally valid, if you want to pass an options instance instead of configuring through action
             services.AddMailjetEmailClient(new MailjetEmailOptions
             {
-                ApiVersion = EmailApiVersion.V3_1,
                 SandboxMode = true
             });
 
