@@ -14,7 +14,7 @@ namespace Mailjet.SimpleClient.Tests
     public class ExtensionsTests
     {
         [Fact]
-        public void Test_ValidateDefaultDependencyInjection()
+        public void Test_ValidateEmailClientDefaultDependencyInjection()
         {
             var services = new ServiceCollection();
 
@@ -31,7 +31,7 @@ namespace Mailjet.SimpleClient.Tests
         }
 
         [Fact]
-        public void Test_ValidateOptionsByActionDependencyInjection()
+        public void Test_ValidateEmailClientOptionsByActionDependencyInjection()
         {
             var services = new ServiceCollection();
 
@@ -48,7 +48,7 @@ namespace Mailjet.SimpleClient.Tests
         }
 
         [Fact]
-        public void Test_ValidateCustomImplementationDependencyInjection()
+        public void Test_ValidateEmailClientCustomImplementationDependencyInjection()
         {
             var services = new ServiceCollection();
             services.AddMailjetEmailClient<MailjetEmailClientMock>();
@@ -57,6 +57,32 @@ namespace Mailjet.SimpleClient.Tests
 
             Assert.IsAssignableFrom<IMailjetEmailClient>(resolvedClient);
             Assert.IsType<MailjetEmailClientMock>(resolvedClient);
+            Assert.NotNull(resolvedClient);
+        }
+
+        [Fact]
+        public void Test_ValidateSimpleClientDependencyInjection()
+        {
+            var services = new ServiceCollection();
+            services.AddMailjetSimpleClient<MailjetSimpleClient>();
+            var serviceProvider = services.BuildServiceProvider();
+            var resolvedClient = serviceProvider.GetRequiredService<IMailjetSimpleClient>();
+
+            Assert.IsAssignableFrom<IMailjetSimpleClient>(resolvedClient);
+            Assert.IsType<MailjetSimpleClient>(resolvedClient);
+            Assert.NotNull(resolvedClient);
+        }
+
+        [Fact]
+        public void Test_ValidateSimpleClientCustomImplementationDependencyInjection()
+        {
+            var services = new ServiceCollection();
+            services.AddMailjetSimpleClient<MailjetSimpleClientMock>();
+            var serviceProvider = services.BuildServiceProvider();
+            var resolvedClient = serviceProvider.GetRequiredService<IMailjetSimpleClient>();
+
+            Assert.IsAssignableFrom<IMailjetSimpleClient>(resolvedClient);
+            Assert.IsType<MailjetSimpleClientMock>(resolvedClient);
             Assert.NotNull(resolvedClient);
         }
 

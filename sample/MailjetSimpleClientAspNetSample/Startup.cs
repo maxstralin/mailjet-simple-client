@@ -6,6 +6,7 @@ using Mailjet.SimpleClient;
 using Mailjet.SimpleClient.Core.Interfaces;
 using Mailjet.SimpleClient.Core.Models.Emailing;
 using Mailjet.SimpleClient.Core.Models.Options;
+using Mailjet.SimpleClient.Core.Models.Requests;
 using Mailjet.SimpleClient.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,22 +28,30 @@ namespace MailjetSimpleClientAspNetSample
             });
 
             //Equally valid, if you want to pass an options instance instead of configuring through action
-            services.AddMailjetEmailClient(new MailjetEmailOptions
-            {
-                SandboxMode = true
-            });
+            //services.AddMailjetEmailClient(new MailjetEmailOptions
+            //{
+            //    SandboxMode = true
+            //});
 
             //Add your own implementation of IMailjetEmailClient.
             //Note that the other DI extensions add IMailjetEmailOptions as a singleton,
             //whereas this makes no assumption of your implementation of IMailjetEmailClient so no options are added to the DI container
-            services.AddMailjetEmailClient<MailjetEmailClient>();
+            //services.AddMailjetEmailClient<MailjetEmailClient>();
+
+            services.AddMailjetSimpleClient();
 
         }
 
         //Let's call it as a dependency here, for the sake of showing that the DI is working, but not very clever to do async here
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IMailjetEmailClient mailjetEmailClient)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IMailjetEmailClient mailjetEmailClient, IMailjetSimpleClient mailjetSimpleClient)
         {
-            var res = mailjetEmailClient.SendAsync(new EmailMessage("Test Testsson", "test@test.com")).GetAwaiter().GetResult();
+            var email = new EmailMessage("Test Testsson", "test@test.com");
+            var res = mailjetEmailClient.SendAsync(email).GetAwaiter().GetResult();
+
+            //The low level MailjetSimpleClient takes an IRequestFactory for sending a request. Anything that implements this (properly) can send whatever type of request
+            //This is essentially the equivalent of what is being done in SendAsync() above.
+            var res2 = mailjetSimpleClient.SendRequestAsync(new SendEmailRequest(email,
+                (mailjetEmailClient as MailjetEmailClient).Options)).GetAwaiter().GetResult();
 
             if (env.IsDevelopment())
             {
