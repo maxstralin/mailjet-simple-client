@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Mailjet.SimpleClient.Entities.Interfaces
+namespace Mailjet.SimpleClient.Core.Interfaces
 {
     /// <summary>
     /// An API response
@@ -22,18 +19,15 @@ namespace Mailjet.SimpleClient.Entities.Interfaces
         /// Raw JSON data
         /// </summary>
         JToken RawResponse { get; }
-        /// <summary>
-        /// Convert the raw response to a type
-        /// </summary>
-        /// <typeparam name="T">The type of the response data</typeparam>
-        /// <returns>The raw data converted</returns>
-        IResponse<T> WithData<T>() where T : class;
+
+        IError Error { get; }
     }
+    /// <inheritdoc />
     /// <summary>
     /// An API response with a specific response data type
     /// </summary>
     /// <typeparam name="T">The type of the response data</typeparam>
-    public interface IResponse<T> : IResponse where T : class
+    public interface IResponse<out T> : IResponse where T : class
     {
         /// <summary>
         /// The deserialised data received back from the API

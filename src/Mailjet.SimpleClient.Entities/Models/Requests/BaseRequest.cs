@@ -1,13 +1,12 @@
-﻿using Mailjet.SimpleClient.Entities.Interfaces;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using Mailjet.SimpleClient.Core.Interfaces;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-namespace Mailjet.SimpleClient.Entities.Models.Requests
+namespace Mailjet.SimpleClient.Core.Models.Requests
 {
     public abstract class BaseRequest : IRequestFactory
     {

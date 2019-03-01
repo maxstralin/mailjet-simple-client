@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace Mailjet.SimpleClient.Entities.Interfaces
+namespace Mailjet.SimpleClient.Core.Interfaces
 {
     /// <summary>
     /// All recipient types and sender

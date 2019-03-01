@@ -1,10 +1,8 @@
-﻿using Mailjet.SimpleClient.Entities.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.Text.RegularExpressions;
+using Mailjet.SimpleClient.Core.Interfaces;
 
-namespace Mailjet.SimpleClient.Entities.Models.Emailing
+namespace Mailjet.SimpleClient.Core.Models.Emailing
 {
     /// <summary>
     /// An EmailEntity may be a recipient or a sender
@@ -29,7 +27,7 @@ namespace Mailjet.SimpleClient.Entities.Models.Emailing
         /// <summary>
         /// Parses a string into an EmailEntity
         /// </summary>
-        /// <param name="emailString">Email string, e.g. Person Perssonsen <person@perssonsen.com></param>
+        /// <param name="emailString">Email string, e.g. <![CDATA[Person Perssonsen <person@perssonsen.com>]]></param>
         /// <returns>Returns null if string couldn't be parsed</returns>
         public static EmailEntity Parse(string emailString)
         {

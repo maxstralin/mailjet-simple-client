@@ -1,11 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Mailjet.SimpleClient.Core.Interfaces;
+using Newtonsoft.Json;
 
-namespace Mailjet.SimpleClient.Entities.Models.Responses
+namespace Mailjet.SimpleClient.Core.Models.Responses
 {
-    public class SendEmailResponseResult
+    public class SendEmailResponseResult : ISendEmailResponseResult
     {
         public string Email { get; set; }
         [JsonProperty(PropertyName = "MessageUUID")]

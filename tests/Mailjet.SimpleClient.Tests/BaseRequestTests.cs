@@ -1,9 +1,6 @@
-﻿using Mailjet.SimpleClient.Entities.Models.Requests;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
 using System.Linq;
-using System.Text;
+using Mailjet.SimpleClient.Core.Models.Requests;
 using Xunit;
 
 namespace Mailjet.SimpleClient.Tests
@@ -15,7 +12,7 @@ namespace Mailjet.SimpleClient.Tests
             HttpMethod = new System.Net.Http.HttpMethod("GET");
             Path = "test-1";
         }
-        public new void SetRequestBody(object obj, JsonSerializer jsonSerializer = null) => base.SetRequestBody(obj, jsonSerializer: null);
+        public new void SetRequestBody(object obj, JsonSerializer jsonSerializer = null) => base.SetRequestBody(obj, jsonSerializer);
     }
 
     public class BaseRequestTests

@@ -19,7 +19,31 @@ For now, you'd need to download and install it manually into your solution.
 
 ### Usage
 #### Dependency injection
-> Coming soon
+See `MailjetSimpleClientAspNetSample` for more samples
+
+**By action**
+```
+//Register default email client with action configuration
+services.AddMailjetEmailClient((opt) =>
+{
+        opt.SandboxMode = true;
+        opt.PrivateKey = "KEY";
+        opt.PublicKey = "KEY";
+});
+```
+**With options instance**
+```
+services.AddMailjetEmailClient(new MailjetEmailOptions
+{
+    SandboxMode = true
+});
+```
+**Custom implementation**
+
+Note that no other service but your implementation is added, you will need to add/configure any dependencies.
+```
+services.AddMailjetEmailClient<YourIMailjetEmailClient>();
+```
 
 #### Send emails
 > More to come

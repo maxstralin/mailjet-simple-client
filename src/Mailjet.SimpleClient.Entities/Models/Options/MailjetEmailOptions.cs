@@ -1,9 +1,8 @@
-﻿using Mailjet.SimpleClient.Entities.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Mailjet.SimpleClient.Core.Interfaces;
 
-namespace Mailjet.SimpleClient.Entities.Models.Options
+// ReSharper disable NonReadonlyMemberInGetHashCode
+
+namespace Mailjet.SimpleClient.Core.Models.Options
 {
     public class MailjetEmailOptions : IMailjetEmailOptions
     {
@@ -14,7 +13,7 @@ namespace Mailjet.SimpleClient.Entities.Models.Options
         /// </summary>
         public EmailApiVersion ApiVersion { get; set; } = EmailApiVersion.V3_1;
         /// <summary>
-        /// If only to validate the request but not actually send it. Defaults to fale
+        /// If only to validate the request but not actually send it. Defaults to false
         /// </summary>
         public bool SandboxMode { get; set; } = false;
 
@@ -29,12 +28,14 @@ namespace Mailjet.SimpleClient.Entities.Models.Options
 
         public override int GetHashCode()
         {
-            var hashCode = 1653785258;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PublicKey);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PrivateKey);
-            hashCode = hashCode * -1521134295 + ApiVersion.GetHashCode();
-            hashCode = hashCode * -1521134295 + SandboxMode.GetHashCode();
-            return hashCode;
+            unchecked
+            {
+                var hashCode = (PublicKey != null ? PublicKey.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (PrivateKey != null ? PrivateKey.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (int) ApiVersion;
+                hashCode = (hashCode * 397) ^ SandboxMode.GetHashCode();
+                return hashCode;
+            }
         }
     }
 }

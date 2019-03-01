@@ -1,19 +1,18 @@
-﻿using Mailjet.SimpleClient.Entities.Exceptions;
-using Mailjet.SimpleClient.Entities.Interfaces;
-using Mailjet.SimpleClient.Entities.Models.Options;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using Mailjet.SimpleClient.Core.Exceptions;
+using Mailjet.SimpleClient.Core.Interfaces;
+using Mailjet.SimpleClient.Core.Models.Options;
 
-namespace Mailjet.SimpleClient.Entities.Models.Requests
+namespace Mailjet.SimpleClient.Core.Models.Requests
 {
     public class SendEmailRequest : BaseRequest
     {
-        public IMailjetEmailOptions MailjetEmailOptions { get; } = new MailjetEmailOptions();
+        public IMailjetEmailOptions MailjetEmailOptions { get; }
         
         public SendEmailRequest(IEnumerable<IEmailMessage> emailMessages, IMailjetEmailOptions options)
         {
@@ -26,11 +25,12 @@ namespace Mailjet.SimpleClient.Entities.Models.Requests
 
             if (MailjetEmailOptions.ApiVersion != EmailApiVersion.V3_1) throw new UnsupportedApiVersionException();
 
-            if (!emailMessages.Any()) throw new ArgumentException("There must be at least one message", nameof(emailMessages));
+            var messages = emailMessages.ToList();
+            if (messages.Count == 0) throw new ArgumentException("There must be at least one message", nameof(emailMessages));
 
             AuthenticationHeaderValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{MailjetEmailOptions.PublicKey}:{MailjetEmailOptions.PrivateKey}")));
 
-            SetRequestBody(new { Messages = emailMessages, SandboxMode = options.SandboxMode });
+            SetRequestBody(new { Messages = messages, options.SandboxMode });
             HttpMethod = new HttpMethod("POST");
             Path = "v3.1/send";
         }

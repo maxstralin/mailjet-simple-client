@@ -1,10 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 
-namespace Mailjet.SimpleClient.Entities.Interfaces
+namespace Mailjet.SimpleClient.Core.Interfaces
 {
     /// <summary>
     /// Something that is able to create a HttpRequestMessage

@@ -1,10 +1,8 @@
-﻿using Mailjet.SimpleClient.Entities.Interfaces;
+﻿using System;
+using Mailjet.SimpleClient.Core.Interfaces;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Mailjet.SimpleClient.Entities.Models.Emailing
+namespace Mailjet.SimpleClient.Core.Models.Emailing
 {
     public class TemplateEmailMessage : BaseEmailMessage, ITemplateEmailMessage
     {
