@@ -4,18 +4,15 @@ mono: none
 dist: trusty
 jobs:
     include:
-        - stage: build
-          script: dotnet build src/Mailjet.SimpleClient -c Release
         - stage: test
           script: dotnet test
         - stage: deploy
-          script: dotnet pack src/Mailjet.SimpleClient/Mailjet.SimpleClient.csproj -c Release /p:NuspecFile=Mailjet.SimpleClient.nuspec -p:PackageVersion=$TRAVIS_TAG
+          script: dotnet pack src/Mailjet.SimpleClient/Mailjet.SimpleClient.csproj -c Release -p:PackageVersion=$TRAVIS_TAG
           deploy:
             skip_cleanup: true
             provider: script
             script: dotnet nuget push src/Mailjet.SimpleClient/bin/Release/Mailjet.*.nupkg --api-key $NUGET_API_KEY
 stages:
- - build
  - test
  - name: deploy
    if: tag =~ ^(\d+\.)?(\d+\.)?(\*|\d+)(-\D+\.?\d+)?$
