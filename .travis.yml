@@ -12,7 +12,8 @@ jobs:
             skip_cleanup: true
             provider: script
             script: dotnet nuget push src/Mailjet.SimpleClient/bin/Release/Mailjet.*.nupkg --api-key $NUGET_API_KEY
-            all_branches: true
+            on:
+                all_branches: true
 stages:
  - test
  - name: deploy
