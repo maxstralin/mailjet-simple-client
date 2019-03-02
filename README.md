@@ -1,7 +1,8 @@
-# Mailjet Simple Client
+# Mailjet Simple Client <img src="assets/LogoMJ_Yellow_RVB.png" alt="Mailjet Logo" title="Mailjet Logo" height="50px" />
 > A simple, yet customisable, client for interacting with Mailjet
 
 ![](https://img.shields.io/travis/maxstralin/mailjet-simple-client.svg?style=flat-square)
+![](https://img.shields.io/nuget/v/Mailet.SimpleClient.svg?style=flat-square)
 ![](https://img.shields.io/nuget/vpre/Mailet.SimpleClient.svg?style=flat-square)
 ![](https://img.shields.io/github/license/maxstralin/mailjet-simple-client.svg?style=flat-square)
 
@@ -9,18 +10,24 @@ Note that currently transactional emails, V3.1, is supported but you can easily 
 
 At the moment the code base is work in progress but contributions are very welcome still.
 
-<img src="assets/LogoMJ_Yellow_RVB.png" alt="Mailjet Logo" title="Mailjet Logo" height="100px" />
-
 ## Prerequisites
 
 - Mailjet account, with public/private key and/or token for SMS API (V4). [How to get API keys](https://www.mailjet.com/support/what-are-the-api-key-and-secret-keys-how-should-i-use-them,109.htm)
-- Targets `.NET Standard 2.0`
+- Targets `.NET Standard 1.6`, meaning it works on
+    -  .NET Core >= 1.0
+    -  .NET Framework 4.6.1
 
 ## Installing
 
-Coming soon: Nuget package.
+Currently in prelease
 
-For now, you'd need to download and install it manually into your solution.
+**Package Manager Console**
+
+`Install-Package Mailjet.SimpleClient –IncludePrerelease`
+
+**Nuget Package Manager**
+
+Search for `Mailjet.SimpleClient`, ensure to tick "Include prerelease"
 
 ## Usage
 ### Basic
