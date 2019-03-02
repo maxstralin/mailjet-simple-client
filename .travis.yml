@@ -18,4 +18,4 @@ stages:
  - build
  - test
  - name: deploy
-   if: $TRAVIS_TAG =~ ^(\d+\.)?(\d+\.)?(\*|\d+)(-\D+\.?\d+)?$
+   if: tag =~ ^(\d+\.)?(\d+\.)?(\*|\d+)(-\D+\.?\d+)?$
