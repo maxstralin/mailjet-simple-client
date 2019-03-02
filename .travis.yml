@@ -15,4 +15,4 @@ jobs:
 stages:
  - test
  - name: deploy
-   if: branch = master AND tag =~ ^(\d+\.)?(\d+\.)?(\*|\d+)(-\D+\.?\d+)?$
+   if: branch = "master" AND tag =~ ^(\d+\.)?(\d+\.)?(\*|\d+)(-\D+\.?\d+)?$
