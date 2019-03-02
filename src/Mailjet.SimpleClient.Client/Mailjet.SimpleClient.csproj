@@ -9,7 +9,7 @@
     <RepositoryUrl>https://github.com/maxstralin/mailjet-simple-client</RepositoryUrl>
     <PackageProjectUrl>https://github.com/maxstralin/mailjet-simple-client</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/maxstralin/mailjet-simple-client/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageTags>Mailjet API Email Mail SMS</PackageTags>
+    <PackageTags>Mailjet API Email Mail SMS Client</PackageTags>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile />
   </PropertyGroup>
