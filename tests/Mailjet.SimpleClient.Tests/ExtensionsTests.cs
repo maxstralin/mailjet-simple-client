@@ -18,13 +18,13 @@ namespace Mailjet.SimpleClient.Tests
         {
             var services = new ServiceCollection();
 
-            services.AddMailjetEmailClient(Config.MailjetEmailOptions);
+            services.AddMailjetEmailClient(Config.GetMailjetEmailOptions());
 
             var serviceProvider = services.BuildServiceProvider();
             var resolvedOptions = serviceProvider.GetRequiredService<IMailjetEmailOptions>();
             var resolvedClient = serviceProvider.GetRequiredService<IMailjetEmailClient>();
 
-            Assert.Equal(resolvedOptions, Config.MailjetEmailOptions);
+            Assert.Equal(resolvedOptions, Config.GetMailjetEmailOptions());
             Assert.IsAssignableFrom<IMailjetEmailClient>(resolvedClient);
             Assert.IsType<MailjetEmailClient>(resolvedClient);
             Assert.NotNull(resolvedClient);
@@ -35,13 +35,13 @@ namespace Mailjet.SimpleClient.Tests
         {
             var services = new ServiceCollection();
 
-            services.AddMailjetEmailClient((opt) => opt.PrivateKey = Config.MailjetEmailOptions.PrivateKey);
+            services.AddMailjetEmailClient((opt) => opt.PrivateKey = Config.GetMailjetEmailOptions().PrivateKey);
 
             var serviceProvider = services.BuildServiceProvider();
             var resolvedOptions = serviceProvider.GetRequiredService<IMailjetEmailOptions>();
             var resolvedClient = serviceProvider.GetRequiredService<IMailjetEmailClient>();
 
-            Assert.Equal(resolvedOptions.PrivateKey, Config.MailjetEmailOptions.PrivateKey);
+            Assert.Equal(resolvedOptions.PrivateKey, Config.GetMailjetEmailOptions().PrivateKey);
             Assert.IsAssignableFrom<IMailjetEmailClient>(resolvedClient);
             Assert.IsType<MailjetEmailClient>(resolvedClient);
             Assert.NotNull(resolvedClient);

@@ -5,7 +5,7 @@ namespace Mailjet.SimpleClient.Tests.Static
 {
     public static class Config
     {
-        public static readonly IMailjetEmailOptions MailjetEmailOptions = new MailjetEmailOptions
+        public static IMailjetEmailOptions GetMailjetEmailOptions () => new MailjetEmailOptions
         {
             ApiVersion = EmailApiVersion.V3_1,
             PrivateKey = "Max",

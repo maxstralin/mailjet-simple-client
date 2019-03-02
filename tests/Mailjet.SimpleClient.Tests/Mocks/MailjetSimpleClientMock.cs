@@ -9,7 +9,7 @@ namespace Mailjet.SimpleClient.Tests.Mocks
 {
     public class MailjetSimpleClientMock : IMailjetSimpleClient
     {
-        public Task<IResponse> SendRequestAsync(IRequestFactory requestFactory)
+        public Task<IResponse> SendRequestAsync(IMailjetRequest request)
         {
             throw new NotImplementedException();
         }

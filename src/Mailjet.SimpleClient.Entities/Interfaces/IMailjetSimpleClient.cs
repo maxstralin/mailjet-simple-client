@@ -11,9 +11,9 @@ namespace Mailjet.SimpleClient.Core.Interfaces
         /// <summary>
         /// Send a request to Mailjet's API
         /// </summary>
-        /// <param name="requestFactory">The factory which create the request</param>
+        /// <param name="request">The Mailjet request</param>
         /// <returns>A generic response</returns>
-        Task<IResponse> SendRequestAsync(IRequestFactory requestFactory);
+        Task<IResponse> SendRequestAsync(IMailjetRequest request);
 
         /// <summary>
         /// Set the HttpClient to be used for requests
