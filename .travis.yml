@@ -9,7 +9,7 @@ jobs:
         - stage: test
           script: dotnet test
         - stage: deploy
-          script: dotnet pack src/Mailjet.SimpleClient/Mailjet.SimpleClient.csproj -c Release /p:NuspecFile=Mailjet.SimpleClient.nuspec -p:PackageVersion=$TRAVIS_TAG
+          script: dotnet pack src/Mailjet.SimpleClient/Mailjet.SimpleClient.csproj -c Release --no-build /p:NuspecFile=Mailjet.SimpleClient.nuspec -p:PackageVersion=$TRAVIS_TAG
           deploy:
             skip_cleanup: true
             provider: script
