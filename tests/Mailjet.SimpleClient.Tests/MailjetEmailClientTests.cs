@@ -1,4 +1,5 @@
 using Mailjet.SimpleClient.Core.Exceptions;
+using Mailjet.SimpleClient.Core.Interfaces;
 using Mailjet.SimpleClient.Core.Models.Options;
 using Mailjet.SimpleClient.Tests.Static;
 using Xunit;
@@ -7,14 +8,19 @@ namespace Mailjet.SimpleClient.Tests
 {
     public class MailjetEmailClientTest
     {
+        private readonly IMailjetEmailOptions mailjetEmailOptions;
+        public MailjetEmailClientTest()
+        {
+            mailjetEmailOptions = Config.GetMailjetEmailOptions();
+        }
         [Fact]
         public void Test_ValidateOptionsInstance()
         {
-            var client = new MailjetEmailClient(Config.MailjetEmailOptions);
+            var client = new MailjetEmailClient(mailjetEmailOptions);
             
             
-            Assert.Same(Config.MailjetEmailOptions, client.Options);
-            Assert.Equal(Config.MailjetEmailOptions, client.Options);
+            Assert.Same(mailjetEmailOptions, client.Options);
+            Assert.Equal(mailjetEmailOptions, client.Options);
         }
 
         [Fact]
@@ -22,14 +28,14 @@ namespace Mailjet.SimpleClient.Tests
         {
             var client = new MailjetEmailClient((opt) =>
             {
-                opt.PrivateKey = Config.MailjetEmailOptions.PrivateKey;
-                opt.PublicKey = Config.MailjetEmailOptions.PublicKey;
-                opt.SandboxMode = Config.MailjetEmailOptions.SandboxMode;
-                opt.ApiVersion = Config.MailjetEmailOptions.ApiVersion;
+                opt.PrivateKey = mailjetEmailOptions.PrivateKey;
+                opt.PublicKey = mailjetEmailOptions.PublicKey;
+                opt.SandboxMode = mailjetEmailOptions.SandboxMode;
+                opt.ApiVersion = mailjetEmailOptions.ApiVersion;
             });
 
-            Assert.NotSame(Config.MailjetEmailOptions, client.Options);
-            Assert.Equal(Config.MailjetEmailOptions, client.Options);
+            Assert.NotSame(mailjetEmailOptions, client.Options);
+            Assert.Equal(mailjetEmailOptions, client.Options);
         }
 
         [Fact]
@@ -43,8 +49,8 @@ namespace Mailjet.SimpleClient.Tests
         [Fact]
         public void Test_OnlyV3_1Supported()
         {
-            Config.MailjetEmailOptions.ApiVersion = EmailApiVersion.V3;
-            Assert.Throws<UnsupportedApiVersionException>(() => new MailjetEmailClient(Config.MailjetEmailOptions));
+            mailjetEmailOptions.ApiVersion = EmailApiVersion.V3;
+            Assert.Throws<UnsupportedApiVersionException>(() => new MailjetEmailClient(mailjetEmailOptions));
         }
     }
 }
