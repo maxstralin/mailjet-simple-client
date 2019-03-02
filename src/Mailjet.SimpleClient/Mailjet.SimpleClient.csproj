@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Mailjet.SimpleClient.Entities\Mailjet.SimpleClient.Core.csproj" />
+    <ProjectReference Include="..\Mailjet.SimpleClient.Core\Mailjet.SimpleClient.Core.csproj" />
   </ItemGroup>
 
 </Project>
