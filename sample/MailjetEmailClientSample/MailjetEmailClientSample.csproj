@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Mailjet.SimpleClient.Client\Mailjet.SimpleClient.csproj" />
+    <ProjectReference Include="..\..\src\Mailjet.SimpleClient\Mailjet.SimpleClient.csproj" />
   </ItemGroup>
 
 </Project>

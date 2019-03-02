@@ -15,11 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Mailjet.SimpleClient.Client\Mailjet.SimpleClient.csproj" />
+    <Folder Include="Properties\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <ProjectReference Include="..\..\src\Mailjet.SimpleClient\Mailjet.SimpleClient.csproj" />
   </ItemGroup>
 
   <ItemGroup>
