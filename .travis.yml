@@ -2,14 +2,20 @@
 dotnet: 2.1.504
 mono: none
 dist: trusty
-script:
-- dotnet build src/Mailjet.SimpleClient -c Release
-- dotnet test
-- dotnet pack src/Mailjet.SimpleClient/Mailjet.SimpleClient.csproj -c Release --no-build /p:NuspecFile=Mailjet.SimpleClient.nuspec
-deploy:
-  skip_cleanup: true
-  provider: script
-  script: dotnet nuget push src/Mailjet.SimpleClient/bin/Release/Mailjet.*.nupkg --api-key $NUGET_API_KEY
-  on:
-    tags: true
-    condition: $TRAVIS_TAG =~ ^(\d+\.)?(\d+\.)?(\*|\d+)(-\D+\.?\d+)?$
+jobs:
+    include:
+        - stage: build
+          script: dotnet build src/Mailjet.SimpleClient -c Release
+        - stage: test
+          script: dotnet test
+        - stage: deploy
+          script: dotnet pack src/Mailjet.SimpleClient/Mailjet.SimpleClient.csproj -c Release --no-build /p:NuspecFile=Mailjet.SimpleClient.nuspec -p:PackageVersion=$TRAVIS_TAG
+          deploy:
+            skip_cleanup: true
+            provider: script
+            script: dotnet nuget push src/Mailjet.SimpleClient/bin/Release/Mailjet.*.nupkg --api-key $NUGET_API_KEY
+stages:
+ - build
+ - test
+ - name: deploy
+   if: $TRAVIS_TAG =~ ^(\d+\.)?(\d+\.)?(\*|\d+)(-\D+\.?\d+)?$
