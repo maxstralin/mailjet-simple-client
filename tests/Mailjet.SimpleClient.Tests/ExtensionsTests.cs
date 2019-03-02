@@ -5,26 +5,25 @@ using Mailjet.SimpleClient.Core.Interfaces;
 using Mailjet.SimpleClient.Core.Models.Responses;
 using Mailjet.SimpleClient.Extensions;
 using Mailjet.SimpleClient.Tests.Mocks;
-using Mailjet.SimpleClient.Tests.Static;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace Mailjet.SimpleClient.Tests
 {
-    public class ExtensionsTests
+    public class ExtensionsTests : ConfigurationFixture
     {
         [Fact]
         public void Test_ValidateEmailClientDefaultDependencyInjection()
         {
             var services = new ServiceCollection();
 
-            services.AddMailjetEmailClient(Config.GetMailjetEmailOptions());
+            services.AddMailjetEmailClient(MailjetEmailOptions);
 
             var serviceProvider = services.BuildServiceProvider();
             var resolvedOptions = serviceProvider.GetRequiredService<IMailjetEmailOptions>();
             var resolvedClient = serviceProvider.GetRequiredService<IMailjetEmailClient>();
 
-            Assert.Equal(resolvedOptions, Config.GetMailjetEmailOptions());
+            Assert.Equal(resolvedOptions, MailjetEmailOptions);
             Assert.IsAssignableFrom<IMailjetEmailClient>(resolvedClient);
             Assert.IsType<MailjetEmailClient>(resolvedClient);
             Assert.NotNull(resolvedClient);
@@ -35,13 +34,13 @@ namespace Mailjet.SimpleClient.Tests
         {
             var services = new ServiceCollection();
 
-            services.AddMailjetEmailClient((opt) => opt.PrivateKey = Config.GetMailjetEmailOptions().PrivateKey);
+            services.AddMailjetEmailClient((opt) => opt.PrivateKey = MailjetEmailOptions.PrivateKey);
 
             var serviceProvider = services.BuildServiceProvider();
             var resolvedOptions = serviceProvider.GetRequiredService<IMailjetEmailOptions>();
             var resolvedClient = serviceProvider.GetRequiredService<IMailjetEmailClient>();
 
-            Assert.Equal(resolvedOptions.PrivateKey, Config.GetMailjetEmailOptions().PrivateKey);
+            Assert.Equal(resolvedOptions.PrivateKey, MailjetEmailOptions.PrivateKey);
             Assert.IsAssignableFrom<IMailjetEmailClient>(resolvedClient);
             Assert.IsType<MailjetEmailClient>(resolvedClient);
             Assert.NotNull(resolvedClient);

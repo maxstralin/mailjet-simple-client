@@ -1,18 +1,51 @@
+using System.Threading.Tasks;
 using Mailjet.SimpleClient.Core.Exceptions;
 using Mailjet.SimpleClient.Core.Interfaces;
+using Mailjet.SimpleClient.Core.Models.Emailing;
 using Mailjet.SimpleClient.Core.Models.Options;
-using Mailjet.SimpleClient.Tests.Static;
 using Xunit;
 
 namespace Mailjet.SimpleClient.Tests
 {
-    public class MailjetEmailClientTest
+    public class MailjetEmailClientTest : ConfigurationFixture
     {
         private readonly IMailjetEmailOptions mailjetEmailOptions;
         public MailjetEmailClientTest()
         {
-            mailjetEmailOptions = Config.GetMailjetEmailOptions();
+            mailjetEmailOptions = MailjetEmailOptions;
         }
+
+        [Fact]
+        public async Task Test_ValidateSandboxBasicEmailSend()
+        {
+            mailjetEmailOptions.SandboxMode = true;
+            var client = new MailjetEmailClient(mailjetEmailOptions);
+
+            var res = await client.SendAsync(new EmailMessage("Max Strålin", "max.stralin@devmasters.se")
+            {
+                To = new[] {new EmailEntity("Max Strålin", "max.stralin@devmasters.se"),},
+                Subject = "Test of email",
+                HtmlBody = "<div>An HTML body</div>"
+            });
+
+            Assert.True(res.Successful);
+        }
+
+        [Fact]
+        public async Task Test_ValidateSandboxTemplateEmailSend()
+        {
+            mailjetEmailOptions.SandboxMode = true;
+            var client = new MailjetEmailClient(mailjetEmailOptions);
+
+            var res = await client.SendAsync(new TemplateEmailMessage(TestTemplateId,"Max Strålin", "max.stralin@devmasters.se")
+            {
+                To = new[] { new EmailEntity("Max Strålin", "max.stralin@devmasters.se"), },
+                Subject = "Test of email"
+            });
+
+            Assert.True(res.Successful);
+        }
+
         [Fact]
         public void Test_ValidateOptionsInstance()
         {

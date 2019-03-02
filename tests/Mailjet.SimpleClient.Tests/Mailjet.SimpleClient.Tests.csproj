@@ -18,4 +18,14 @@
     <ProjectReference Include="..\..\src\Mailjet.SimpleClient.Client\Mailjet.SimpleClient.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\environment_vars.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

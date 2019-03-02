@@ -328,3 +328,4 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+/tests/Mailjet.SimpleClient.Tests/Properties/environment_vars.json
