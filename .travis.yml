@@ -5,7 +5,7 @@ dist: trusty
 script:
 - dotnet build src/Mailjet.SimpleClient -c Release
 - dotnet test
-- dotnet pack src/Mailjet.SimpleClient -c Release --no-build /p:NuspecFile=src/Mailjet.SimpleClient/Mailjet.SimpleClient.nuspec
+- dotnet pack src/Mailjet.SimpleClient/Mailjet.SimpleClient.csproj -c Release --no-build /p:NuspecFile=Mailjet.SimpleClient.nuspec
 deploy:
   skip_cleanup: true
   provider: script
