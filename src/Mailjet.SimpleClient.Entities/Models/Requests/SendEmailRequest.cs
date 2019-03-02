@@ -29,7 +29,6 @@ namespace Mailjet.SimpleClient.Core.Models.Requests
             if (messages.Count == 0) throw new ArgumentException("There must be at least one message", nameof(emailMessages));
 
             AuthenticationHeaderValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{MailjetEmailOptions.PublicKey}:{MailjetEmailOptions.PrivateKey}")));
-
             SetRequestBody(new { Messages = messages, options.SandboxMode });
             HttpMethod = new HttpMethod("POST");
             Path = "v3.1/send";
