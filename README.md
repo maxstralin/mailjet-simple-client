@@ -5,7 +5,7 @@ Note that currently transactional emails, V3.1, is supported but you can easily 
 
 At the moment the code base is work in progress but contributions are very welcome still.
 
-![](assets/LogoMJ_Yellow_RVB.png)
+<img src="assets/LogoMJ_Yellow_RVB.png" alt="Mailjet Logo" title="Mailjet Logo" height="100px" />
 
 ## Prerequisites
 
