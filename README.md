@@ -5,6 +5,8 @@ Note that currently transactional emails, V3.1, is supported but you can easily 
 
 At the moment the code base is work in progress but contributions are very welcome still.
 
+![](assets/LogoMJ_Yellow_RVB.png)
+
 ## Prerequisites
 
 - Mailjet account, with public/private key and/or token for SMS API (V4). [How to get API keys](https://www.mailjet.com/support/what-are-the-api-key-and-secret-keys-how-should-i-use-them,109.htm)
