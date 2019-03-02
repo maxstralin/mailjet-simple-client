@@ -16,6 +16,7 @@ At the moment the code base is work in progress but contributions are very welco
 - Targets `.NET Standard 1.6`, meaning it works on
     -  .NET Core >= 1.0
     -  .NET Framework 4.6.1
+    -  [and more...](https://docs.microsoft.com/en-us/dotnet/standard/net-standard)
 
 ## Installing
 
