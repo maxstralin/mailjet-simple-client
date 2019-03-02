@@ -3,14 +3,14 @@
 namespace Mailjet.SimpleClient.Core.Interfaces
 {
     /// <summary>
-    /// Something that is able to create a HttpRequestMessage
+    /// Something that is able to create an IMailjetRequest
     /// </summary>
     public interface IRequestFactory
     {
         /// <summary>
-        /// Create a HttpRequestMessage to use for sending request to an API
+        /// Create a IMailjetRequest to use for sending request to an API
         /// </summary>
-        /// <returns>A HttpRequestMessage</returns>
-        HttpRequestMessage CreateRequest();
+        /// <returns>A IMailjetRequest</returns>
+        IMailjetRequest CreateRequest();
     }
 }
