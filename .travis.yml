@@ -5,3 +5,11 @@ dist: trusty
 script:
 - dotnet build src/Mailjet.SimpleClient -c Release
 - dotnet test
+- dotnet pack src/Mailjet.SimpleClient -c Release --no-build /p:NuspecFile=src/Mailjet.SimpleClient/Mailjet.SimpleClient.nuspec
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: dotnet nuget push src/Mailjet.SimpleClient/bin/Release/Mailjet.*.nupkg --api-key $NUGET_API_KEY
+  on:
+    tags: true
+    condition: $TRAVIS_TAG =~ ^(\d+\.)?(\d+\.)?(\*|\d+)(-\D+\.?\d+)?$
