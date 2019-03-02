@@ -1,6 +1,10 @@
 # Mailjet Simple Client
 > A simple, yet customisable, client for interacting with Mailjet
 
+![](https://img.shields.io/travis/maxstralin/mailjet-simple-client.svg?style=flat-square)
+![](https://img.shields.io/nuget/vpre/Mailet.SimpleClient.svg?style=flat-square)
+![](https://img.shields.io/github/license/maxstralin/mailjet-simple-client.svg?style=flat-square)
+
 Note that currently transactional emails, V3.1, is supported but you can easily customise/add behaviour yourself, see [Customise](#customise).
 
 At the moment the code base is work in progress but contributions are very welcome still.
