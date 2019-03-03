@@ -1,7 +1,6 @@
 ﻿using System;
 using Mailjet.SimpleClient.Core.Interfaces;
 using Mailjet.SimpleClient.Core.Models.Options;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Mailjet.SimpleClient.Extensions

@@ -73,8 +73,7 @@ var simpleClient = new MailjetSimpleClient();
 ```
 
 ### Customise
-`MailjetSimpleClient` is the low-level class responsible for interacting with Mailjet. Pass anything implementing `IRequestFactory` into `SendRequestAsync` to send any type of request.
-You can add your own implementation to the DI container using 
+Add your own implementations to the DI container as below.
 
 ```csharp
 services.AddMailjetOptions(IMailjetOptions)
