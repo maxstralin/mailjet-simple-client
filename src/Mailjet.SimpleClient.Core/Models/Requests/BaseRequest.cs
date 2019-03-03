@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using Mailjet.SimpleClient.Core.Interfaces;
+using Mailjet.SimpleClient.Core.Serialisers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -20,11 +21,7 @@ namespace Mailjet.SimpleClient.Core.Models.Requests
 
         protected void SetRequestBody(object obj, JsonSerializer jsonSerializer = null)
         {
-            var serialiser = jsonSerializer ?? new JsonSerializer
-            {
-                NullValueHandling = NullValueHandling.Ignore
-            };
-            RequestBody = JToken.FromObject(obj, serialiser);
+            RequestBody = MailjetSerialiser.Serialise(obj, jsonSerializer);
         }
     }
 }
