@@ -9,6 +9,18 @@ namespace Mailjet.SimpleClient.Core.Models.Emailing
     public class EmailMessage : BaseEmailMessage
     {
         /// <summary>
+        /// Initialise an empty email
+        /// </summary>
+        public EmailMessage() { }
+
+        /// <summary>
+        /// Initialise an email message with a sender name and email
+        /// </summary>
+        /// <param name="senderName">Name in From</param>
+        /// <param name="senderEmail">Email in From</param>
+        public EmailMessage(string senderName, string senderEmail) : this(new EmailEntity(senderName, senderEmail)) { }
+
+        /// <summary>
         /// Initialise an email with an IEmailEntity
         /// </summary>
         /// <param name="from">An email entity instance</param>
@@ -16,15 +28,17 @@ namespace Mailjet.SimpleClient.Core.Models.Emailing
         {
             From = from ?? throw new ArgumentNullException(nameof(from));
         }
+        
         /// <summary>
-        /// Initialise an email message with a sender name and email
+        /// The HTML body
         /// </summary>
-        /// <param name="senderName">Name in From</param>
-        /// <param name="senderEmail">Email in From</param>
-        public EmailMessage(string senderName, string senderEmail) : this(new EmailEntity(senderName, senderEmail)) { }
         [JsonProperty(PropertyName = "HtmlPart")]
         public string HtmlBody { get; set; }
+        /// <summary>
+        /// Plain text body
+        /// </summary>
         [JsonProperty(PropertyName = "TextPart")]
         public string PlainTextBody { get; set; }
+        
     }
 }

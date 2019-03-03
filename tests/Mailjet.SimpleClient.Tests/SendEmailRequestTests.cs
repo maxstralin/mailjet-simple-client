@@ -58,9 +58,9 @@ namespace Mailjet.SimpleClient.Tests
         {
             var msg = new EmailMessage("Test", "dummy@test.dev");
             var req = new SendEmailRequest(new[] { msg }, MailjetOptions);
-            Assert.Null(msg.Id);
+            Assert.Null(msg.CustomId);
             //Note that if the value doesn't exit, it returns null. If the value exists, it return a JValue with the value of null!
-            Assert.Null(req.RequestBody["Messages"].First[nameof(msg.Id)]);
+            Assert.Null(req.RequestBody["Messages"].First[nameof(msg.CustomId)]);
         }
 
         [Fact]
