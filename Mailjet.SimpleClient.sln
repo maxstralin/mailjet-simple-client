@@ -21,8 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mailjet.SimpleClient", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mailjet.SimpleClient.Core", "src\Mailjet.SimpleClient.Core\Mailjet.SimpleClient.Core.csproj", "{890CEAFD-370E-4324-B841-503421AD3487}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailjetSimpleClientAspNet1.1Sample", "sample\MailjetSimpleClientAspNet1.1Sample\MailjetSimpleClientAspNet1.1Sample.csproj", "{AAE1DB47-8CB1-4B68-9B9C-433A422DDE12}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,10 +47,6 @@ Global
 		{890CEAFD-370E-4324-B841-503421AD3487}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{890CEAFD-370E-4324-B841-503421AD3487}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{890CEAFD-370E-4324-B841-503421AD3487}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AAE1DB47-8CB1-4B68-9B9C-433A422DDE12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AAE1DB47-8CB1-4B68-9B9C-433A422DDE12}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AAE1DB47-8CB1-4B68-9B9C-433A422DDE12}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AAE1DB47-8CB1-4B68-9B9C-433A422DDE12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,7 +57,6 @@ Global
 		{C994FE2C-7992-432A-84F8-A5B0ECE170B5} = {0B789B9B-14B0-49C7-B521-48418DEE70DC}
 		{CA5BE6A3-DD54-4CB3-810B-97A3A377483B} = {02EA1761-EBE7-4CAA-97B9-D63EC5E4FA83}
 		{890CEAFD-370E-4324-B841-503421AD3487} = {AE36A47E-0AD2-498F-BE89-0087B3506EBF}
-		{AAE1DB47-8CB1-4B68-9B9C-433A422DDE12} = {0B789B9B-14B0-49C7-B521-48418DEE70DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BE67B65C-D8B0-47B7-96B2-215DCEC91F52}

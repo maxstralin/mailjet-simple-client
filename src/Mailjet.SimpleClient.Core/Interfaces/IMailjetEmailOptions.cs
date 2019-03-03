@@ -8,17 +8,9 @@ namespace Mailjet.SimpleClient.Core.Interfaces
     public interface IMailjetEmailOptions
     {
         /// <summary>
-        /// Public key for Mailjet email API
-        /// </summary>
-        string PublicKey { get; set; }
-        /// <summary>
-        /// Private/secret key for Mailjet email API
-        /// </summary>
-        string PrivateKey { get; set; }
-        /// <summary>
         /// Email API version
         /// </summary>
-        EmailApiVersion ApiVersion { get; set; }
+        EmailApiVersion EmailApiVersion { get; set; }
         /// <summary>
         /// Dry run the request
         /// </summary>

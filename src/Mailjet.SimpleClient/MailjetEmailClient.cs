@@ -9,36 +9,25 @@ using Mailjet.SimpleClient.Core.Models.Responses;
 
 namespace Mailjet.SimpleClient
 {
-    public class MailjetEmailClient : MailjetSimpleClient, IMailjetEmailClient
+    public class MailjetEmailClient : IMailjetEmailClient
     {
-        public MailjetEmailClient(Action<IMailjetEmailOptions> options)
-        {
-            SetOptions(new MailjetEmailOptions());
-            options(Options);
-        }
+        private readonly IMailjetSimpleClient client;
 
-        public MailjetEmailClient(IMailjetEmailOptions options)
+        public MailjetEmailClient(IMailjetSimpleClient client, IMailjetOptions options)
         {
-            SetOptions(options);
-        }
-
-        private void SetOptions(IMailjetEmailOptions options)
-        {
+            this.client = client ?? throw new ArgumentNullException(nameof(client));
             Options = options ?? throw new ArgumentNullException(nameof(options));
-            if (Options.ApiVersion != EmailApiVersion.V3_1) throw new UnsupportedApiVersionException();
+            if (Options.EmailOptions.EmailApiVersion != EmailApiVersion.V3_1) throw new UnsupportedApiVersionException();
         }
 
-        public IMailjetEmailOptions Options { get; private set; }
+        public IMailjetOptions Options { get; private set; }
 
         public async Task<ISendEmailResponse> SendAsync(IEnumerable<IEmailMessage> emailMessages)
         {
-            var res = await SendRequestAsync(new SendEmailRequest(emailMessages, Options));
+            var res = await client.SendRequestAsync(new SendEmailRequest(emailMessages, Options));
             return new SendEmailResponse(res.RawResponse["Messages"]?.ToObject<List<SendEmailResponseEntry>>(), res);
         }
 
-        public Task<ISendEmailResponse> SendAsync(IEmailMessage emailMessage)
-        {
-            return SendAsync(new[] { emailMessage });
-        }
+        public Task<ISendEmailResponse> SendAsync(IEmailMessage emailMessage) => SendAsync(new[] {emailMessage});
     }
 }

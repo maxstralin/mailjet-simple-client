@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Mailjet.SimpleClient.Core.Extensions;
 using Mailjet.SimpleClient.Core.Interfaces;
+using Mailjet.SimpleClient.Core.Models.Options;
 using Mailjet.SimpleClient.Core.Models.Responses;
 using Mailjet.SimpleClient.Extensions;
 using Mailjet.SimpleClient.Tests.Mocks;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Moq;
 using Xunit;
 
 namespace Mailjet.SimpleClient.Tests
@@ -13,63 +17,28 @@ namespace Mailjet.SimpleClient.Tests
     public class ExtensionsTests : ConfigurationFixture
     {
         [Fact]
-        public void Test_ValidateEmailClientDefaultDependencyInjection()
-        {
-            var services = new ServiceCollection();
-
-            services.AddMailjetEmailClient(MailjetEmailOptions);
-
-            var serviceProvider = services.BuildServiceProvider();
-            var resolvedOptions = serviceProvider.GetRequiredService<IMailjetEmailOptions>();
-            var resolvedClient = serviceProvider.GetRequiredService<IMailjetEmailClient>();
-
-            Assert.Equal(resolvedOptions, MailjetEmailOptions);
-            Assert.IsAssignableFrom<IMailjetEmailClient>(resolvedClient);
-            Assert.IsType<MailjetEmailClient>(resolvedClient);
-            Assert.NotNull(resolvedClient);
-        }
-
-        [Fact]
-        public void Test_ValidateEmailClientOptionsByActionDependencyInjection()
-        {
-            var services = new ServiceCollection();
-
-            services.AddMailjetEmailClient((opt) => opt.PrivateKey = MailjetEmailOptions.PrivateKey);
-
-            var serviceProvider = services.BuildServiceProvider();
-            var resolvedOptions = serviceProvider.GetRequiredService<IMailjetEmailOptions>();
-            var resolvedClient = serviceProvider.GetRequiredService<IMailjetEmailClient>();
-
-            Assert.Equal(resolvedOptions.PrivateKey, MailjetEmailOptions.PrivateKey);
-            Assert.IsAssignableFrom<IMailjetEmailClient>(resolvedClient);
-            Assert.IsType<MailjetEmailClient>(resolvedClient);
-            Assert.NotNull(resolvedClient);
-        }
-
-        [Fact]
-        public void Test_ValidateEmailClientCustomImplementationDependencyInjection()
+        public void Test_ValidateDICustomEmailClient()
         {
             var services = new ServiceCollection();
             services.AddMailjetEmailClient<MailjetEmailClientMock>();
-            var serviceProvider = services.BuildServiceProvider();
-            var resolvedClient = serviceProvider.GetRequiredService<IMailjetEmailClient>();
 
-            Assert.IsAssignableFrom<IMailjetEmailClient>(resolvedClient);
-            Assert.IsType<MailjetEmailClientMock>(resolvedClient);
-            Assert.NotNull(resolvedClient);
+            Assert.Contains(services, descriptor => descriptor.ServiceType == typeof(IMailjetEmailClient) && descriptor.ImplementationType == typeof(MailjetEmailClientMock));
         }
 
         [Fact]
-        public void Test_ValidateSimpleClientDependencyInjection()
+        public void Test_ValidateDIMailjetClients()
         {
             var services = new ServiceCollection();
-            services.AddMailjetSimpleClient<MailjetSimpleClient>();
-            var serviceProvider = services.BuildServiceProvider();
-            var resolvedClient = serviceProvider.GetRequiredService<IMailjetSimpleClient>();
+            services.AddMailjetClients(a => a.PrivateKey = MailjetOptions.PrivateKey);
 
-            Assert.IsAssignableFrom<IMailjetSimpleClient>(resolvedClient);
-            Assert.IsType<MailjetSimpleClient>(resolvedClient);
-            Assert.NotNull(resolvedClient);
+            var provider = services.BuildServiceProvider();
+            var emailClient = provider.GetRequiredService<IMailjetEmailClient>();
+            var simpleClient = provider.GetRequiredService<IMailjetSimpleClient>();
+            var options = provider.GetRequiredService<IMailjetOptions>();
+
+            Assert.IsType<MailjetEmailClient>(emailClient);
+            Assert.IsType<MailjetSimpleClient>(simpleClient);
+            Assert.IsType<MailjetOptions>(options);
         }
 
         [Fact]
@@ -88,7 +57,7 @@ namespace Mailjet.SimpleClient.Tests
         [Fact]
         public void Test_ValidateGetEntriesForAllRecipients()
         {
-            var expectedEmails = new[] {"to@test.com", "cc@test.com", "bcc@test.com"};
+            var expectedEmails = new[] { "to@test.com", "cc@test.com", "bcc@test.com" };
             var entry = new SendEmailResponseEntry()
             {
                 To = new List<ISendEmailResponseResult>() { new SendEmailResponseResult() { Email = "to@test.com" } },
@@ -99,7 +68,7 @@ namespace Mailjet.SimpleClient.Tests
             var entries = entry.GetEntriesForAllRecipients();
             var actualEmails = entries.Select(a => a.Email);
 
-            Assert.Equal(expectedEmails, actualEmails);            
+            Assert.Equal(expectedEmails, actualEmails);
         }
 
     }

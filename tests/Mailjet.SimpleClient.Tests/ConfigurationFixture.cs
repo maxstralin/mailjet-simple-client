@@ -11,15 +11,16 @@ namespace Mailjet.SimpleClient.Tests
     public class ConfigurationFixture
     {
 
-        public readonly IMailjetEmailOptions MailjetEmailOptions;
+        public readonly IMailjetOptions MailjetOptions;
         public const int TestTemplateId = 711944;
         public ConfigurationFixture()
         {
             LoadEnvironmentVarsFromFile();
-            MailjetEmailOptions = new MailjetEmailOptions
+            MailjetOptions = new MailjetOptions
             {
-                ApiVersion = EmailApiVersion.V3_1,
-                SandboxMode = true,
+                EmailOptions = {
+                    SandboxMode = true
+                },
                 PrivateKey = Environment.GetEnvironmentVariable("MAILJET_PRIVATE_KEY"),
                 PublicKey = Environment.GetEnvironmentVariable("MAILJET_PUBLIC_KEY")
             };
