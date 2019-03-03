@@ -24,21 +24,21 @@ namespace MailjetSimpleClientAspNetSample
                 //Set up settings
                 opt.EmailOptions.SandboxMode = true;
                 opt.SmsOptions.SmsApiVersion = SmsApiVersion.V4;
-                opt.PrivateKey = "";
+                opt.PrivateKey = Environment.GetEnvironmentVariable("MAILJET_PRIVATE_KEY");
+                opt.PublicKey = Environment.GetEnvironmentVariable("MAILJET_PUBLIC_KEY");
                 opt.Token = "";
             });
         }
 
         //Let's call it as a dependency here, for the sake of showing that the DI is working, but not very clever to do async here
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IMailjetEmailClient mailjetEmailClient, IMailjetSimpleClient mailjetSimpleClient)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IMailjetEmailClient mailjetEmailClient, IMailjetSimpleClient mailjetSimpleClient, IMailjetOptions mailjetOptions)
         {
             var email = new EmailMessage("Test Testsson", "test@test.com");
             var res = mailjetEmailClient.SendAsync(email).GetAwaiter().GetResult();
 
             //The low level MailjetSimpleClient takes an IRequestFactory for sending a request. Anything that implements this (properly) can send whatever type of request
             //This is essentially the equivalent of what is being done in SendAsync() above.
-            var res2 = mailjetSimpleClient.SendRequestAsync(new SendEmailRequest(email,
-                (mailjetEmailClient as MailjetEmailClient).Options)).GetAwaiter().GetResult();
+            var res2 = mailjetSimpleClient.SendRequestAsync(new SendEmailRequest(email, mailjetOptions)).GetAwaiter().GetResult();
 
             if (env.IsDevelopment())
             {
