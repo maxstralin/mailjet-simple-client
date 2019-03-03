@@ -8,13 +8,28 @@ namespace Mailjet.SimpleClient.Extensions
 {
     public static class DependencyInjectionExtensions
     {
+        /// <summary>
+        /// Registers <c>IMailjetOptions</c>, <c>IMailjetEmailClient</c>, <c>IMailjetSimpleClient</c>
+        /// </summary>
+        /// <param name="serviceDescriptors">Service collection</param>
+        /// <param name="config">Configuration action</param>
         public static void AddMailjetClients(this IServiceCollection serviceDescriptors, Action<IMailjetOptions> config)
         {
             var options = new MailjetOptions();
             config(options);
-            serviceDescriptors.AddSingleton<IMailjetOptions>(options);
+            serviceDescriptors.AddMailjetOptions(options);
             serviceDescriptors.AddMailjetSimpleClient();
             serviceDescriptors.AddMailjetEmailClient();
+        }
+
+        /// <summary>
+        /// Adds an <c>IMailjetOptions</c> instance as a singleton
+        /// </summary>
+        /// <param name="serviceDescriptors"></param>
+        /// <param name="options">Mailjet options</param>
+        public static void AddMailjetOptions(this IServiceCollection serviceDescriptors, IMailjetOptions options)
+        {
+            serviceDescriptors.AddSingleton(options);
         }
 
         /// <summary>

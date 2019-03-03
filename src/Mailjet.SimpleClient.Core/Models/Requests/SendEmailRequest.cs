@@ -12,8 +12,6 @@ namespace Mailjet.SimpleClient.Core.Models.Requests
 {
     public class SendEmailRequest : BaseRequest
     {
-        public IMailjetOptions Options { get; }
-        
         public SendEmailRequest(IEnumerable<IEmailMessage> emailMessages, IMailjetOptions options)
         {
             if (emailMessages == null)
@@ -37,5 +35,8 @@ namespace Mailjet.SimpleClient.Core.Models.Requests
         {
 
         }
+
+        public IMailjetOptions Options { get; }
+
     }
 }

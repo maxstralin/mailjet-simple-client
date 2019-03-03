@@ -12,7 +12,7 @@ namespace MailjetEmailClientSample
         private static async Task Main()
         {
             //Can also be through a configuration action, e.g. (opt) => { PrivateKey = "" }
-            var client = new MailjetEmailClient(new MailjetOptions
+            var client = new MailjetEmailClient(new MailjetSimpleClient(),  new MailjetOptions
             {
                 PrivateKey = Environment.GetEnvironmentVariable("MAILJET_PRIVATE_KEY"),
                 PublicKey = Environment.GetEnvironmentVariable("MAILJET_PUBLIC_KEY"),

@@ -31,58 +31,62 @@ Currently in prelease
 Search for `Mailjet.SimpleClient`, ensure to tick "Include prerelease"
 
 ## Usage
-### Basic
+
+- [Sending emails](https://github.com/maxstralin/mailjet-simple-client/wiki/Sending-emails)
+- [Clients](https://github.com/maxstralin/mailjet-simple-client/wiki/Clients)
+- [Working with multiple types of requests](https://github.com/maxstralin/mailjet-simple-client/wiki/Clients)
+
+### Types of clients
+Generally, if you're working with one type of request, e.g. only sending emails, then it's usually better to use a specific client for it.
+If you're working with multiple types of requests, e.g. sending an email and updating a template, then it's better to use the generic `IMailjetSimpleClient.SendRequeststAsync()`.
+
+See [Clients](https://github.com/maxstralin/mailjet-simple-client/wiki/Clients) and  [Working with multiple types of requests](https://github.com/maxstralin/mailjet-simple-client/wiki/Clients)
+
+### Dependency injection
+**Register clients**
+```csharp
+public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddMailjetClients(opt =>
+        {
+            //Set up settings
+            opt.EmailOptions.SandboxMode = true;
+            opt.PrivateKey = "";
+            opt.Token = "";
+        });
+    }
+```
+
+**Inject into controller/action**
+
+`AddMailjetClient()` creates three services: `IMailjetOptions`, `IMailjetEmailClient`, and `IMailjetSimpleClient`, which can be injected as any other service throuh your controller's constructor or action parameters.
+
+### Manual
 #### Email client
-```
-var emailClient = new MailjetEmailClient((opt) => {});
-```
-```
-var emailClient = new MailjetEmailClient(new MailjetEmailOptions() {});
+```csharp
+var emailClient = new MailjetEmailClient(new MailjetSimpleClient(), new MailjetOptions());
 ```
 
 #### Low level client
-```
+```csharp
 var simpleClient = new MailjetSimpleClient();
 ```
 
-### Dependency injection
-See `MailjetSimpleClientAspNetSample` for more samples
-
-#### MailjetEmailClient
-Registers a service implementing `IMailjetEmailClient`
-```
-//Register default email client with action configuration
-services.AddMailjetEmailClient((opt) => {});
-```
-```
-//Register default email client with options instance
-services.AddMailjetEmailClient(new MailjetEmailOptions());
-```
-**Custom implementation of IMailjetEmailClient**
-
-Note that no other service but your implementation is added, you will need to add/configure any dependencies.
-```
-services.AddMailjetEmailClient<YourIMailjetEmailClient>();
-```
-
-#### MailjetSimpleClient
-Register a service implementing `IMailjetSimpleClient`
-```
-services.AddMailjetSimpleClient();
-```
-
-#### Send emails
-> More to come
-```C#
-var emailClient = new MailjetEmailClient(options);
-await emailClient.SendAsync(new EmailMessage());
-await emailClient.SendAsync(new TemplateEmailMessage());
-```
-
-#### Customise
+### Customise
 `MailjetSimpleClient` is the low-level class responsible for interacting with Mailjet. Pass anything implementing `IRequestFactory` into `SendRequestAsync` to send any type of request.
+You can add your own implementation to the DI container using 
 
-You can also extend `MailjetSimpleClient` into a subclass, like `MailjetEmailClient` does, to provide an easy wrapper.
+```csharp
+services.AddMailjetOptions(IMailjetOptions)
+```
+
+```csharp
+services.AddMailjetSimpleClient<YourMailjetSimpleClient>()
+```
+
+```csharp
+services.AddMailjetEmailClient<YourMailjetEmailClient>();
+```
 
 ## Authors
 
