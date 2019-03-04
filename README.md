@@ -13,8 +13,8 @@ At the moment the code base is work in progress but contributions are very welco
 ## Prerequisites
 
 - Mailjet account, with public/private key and/or token for SMS API (V4). [How to get API keys](https://www.mailjet.com/support/what-are-the-api-key-and-secret-keys-how-should-i-use-them,109.htm)
-- Targets `.NET Standard 1.6`, meaning it works on
-    -  .NET Core >= 1.0
+- Targets `.NET Standard 2.0`, meaning it works on
+    -  .NET Core >= 2.0
     -  .NET Framework 4.6.1
     -  [and more...](https://docs.microsoft.com/en-us/dotnet/standard/net-standard)
 
