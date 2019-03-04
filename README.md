@@ -2,8 +2,8 @@
 > A simple, yet customisable, client for interacting with Mailjet
 
 ![](https://img.shields.io/travis/maxstralin/mailjet-simple-client.svg?style=flat-square)
-![](https://img.shields.io/nuget/v/Mailjet.SimpleClient.svg?style=flat-square)
-![](https://img.shields.io/nuget/vpre/Mailjet.SimpleClient.svg?style=flat-square)
+<a href="https://www.nuget.org/packages/Mailjet.SimpleClient/" target="_blank"><img alt="Nuget package" title="Nuget package" src="https://img.shields.io/nuget/v/Mailjet.SimpleClient.svg?color=1081c2&label=Stable&style=flat-square" /></a>
+<a href="https://www.nuget.org/packages/Mailjet.SimpleClient/" target="_blank"><img alt="Nuget package" title="Nuget package" src="https://img.shields.io/nuget/vpre/Mailjet.SimpleClient.svg?label=Latest&style=flat-square" /></a>
 ![](https://img.shields.io/github/license/maxstralin/mailjet-simple-client.svg?style=flat-square)
 
 Note that currently transactional emails, V3.1, is supported but you can easily customise/add behaviour yourself, see [Customise](#customise).
