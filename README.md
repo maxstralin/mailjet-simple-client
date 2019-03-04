@@ -2,8 +2,8 @@
 > A simple, yet customisable, client for interacting with Mailjet
 
 ![](https://img.shields.io/travis/maxstralin/mailjet-simple-client.svg?style=flat-square)
-![](https://img.shields.io/nuget/v/Mailet.SimpleClient.svg?style=flat-square)
-![](https://img.shields.io/nuget/vpre/Mailet.SimpleClient.svg?style=flat-square)
+![](https://img.shields.io/nuget/v/Mailjet.SimpleClient.svg?style=flat-square)
+![](https://img.shields.io/nuget/vpre/Mailjet.SimpleClient.svg?style=flat-square)
 ![](https://img.shields.io/github/license/maxstralin/mailjet-simple-client.svg?style=flat-square)
 
 Note that currently transactional emails, V3.1, is supported but you can easily customise/add behaviour yourself, see [Customise](#customise).
@@ -24,7 +24,7 @@ Currently in prelease
 
 **Package Manager Console**
 
-`Install-Package Mailjet.SimpleClient –IncludePrerelease`
+`Install-Package Mailjet.SimpleClient â€“IncludePrerelease`
 
 **Nuget Package Manager**
 
@@ -89,7 +89,7 @@ services.AddMailjetEmailClient<YourMailjetEmailClient>();
 
 ## Authors
 
-* [Max Strålin](https://github.com/maxstralin)
+* [Max StrÃ¥lin](https://github.com/maxstralin)
 
 See also the list of [contributors](https://github.com/maxstralin/mailjet-simple-client/graphs/contributors) who participated in this project.
 
