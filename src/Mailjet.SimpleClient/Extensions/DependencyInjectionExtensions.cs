@@ -1,12 +1,14 @@
 ﻿using System;
 using Mailjet.SimpleClient.Core.Interfaces;
 using Mailjet.SimpleClient.Core.Models.Options;
+using Mailjet.SimpleClient.Logging;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Mailjet.SimpleClient.Extensions
 {
     public static class DependencyInjectionExtensions
     {
+        private static readonly ILog Log = LogProvider.GetCurrentClassLogger();
         /// <summary>
         /// Registers <c>IMailjetOptions</c>, <c>IMailjetEmailClient</c>, <c>IMailjetSimpleClient</c>
         /// </summary>
@@ -14,11 +16,13 @@ namespace Mailjet.SimpleClient.Extensions
         /// <param name="config">Configuration action</param>
         public static void AddMailjetClients(this IServiceCollection serviceDescriptors, Action<IMailjetOptions> config)
         {
+            Log.Debug("Adding Mailjet clients to dependency injection");
             var options = new MailjetOptions();
             config(options);
             serviceDescriptors.AddMailjetOptions(options);
             serviceDescriptors.AddMailjetSimpleClient();
             serviceDescriptors.AddMailjetEmailClient();
+            Log.Debug("Added Mailjet clients to dependency injection");
         }
 
         /// <summary>

@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Mailjet.SimpleClient.Core.Interfaces;
 using Mailjet.SimpleClient.Core.Models.Responses;
+using Mailjet.SimpleClient.Logging;
 using Newtonsoft.Json.Linq;
 
 namespace Mailjet.SimpleClient
@@ -11,6 +12,7 @@ namespace Mailjet.SimpleClient
     public class MailjetSimpleClient : IMailjetSimpleClient
     {
         private HttpClient HttpClient { get; set; }
+        private static readonly ILog Log = LogProvider.For<MailjetSimpleClient>();
 
         public MailjetSimpleClient() : this(null) { }
         public MailjetSimpleClient(HttpClient httpClient)
@@ -26,15 +28,18 @@ namespace Mailjet.SimpleClient
             };
             req.Headers.Authorization = request.AuthenticationHeaderValue;
             req.Headers.UserAgent.ParseAdd(request.UserAgent);
+            Log.Info($"Sending {request.HttpMethod} request to {request.Uri}");
+            Log.Debug($"Request body: {Environment.NewLine} {request.RequestBody.ToString()}");
             var res = await HttpClient.SendAsync(req);
+            Log.Info($"Request was successful: " +res.IsSuccessStatusCode);
             var content = await res.Content.ReadAsStringAsync();
-
+            Log.Debug("Response body: "+content);
             return new Response(JToken.Parse(content), (int)res.StatusCode, res.IsSuccessStatusCode);
         }
 
         public void UseHttpClient(HttpClient httpClient)
         {
-
+            Log.Debug("Custom HttpClient set");
             HttpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
     }
