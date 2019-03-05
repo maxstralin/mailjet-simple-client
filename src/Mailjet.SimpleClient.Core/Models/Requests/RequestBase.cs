@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Mailjet.SimpleClient.Core.Models.Requests
 {
-    public abstract class BaseRequest : IMailjetRequest
+    public abstract class RequestBase : IMailjetRequest
     {
         public string BaseUri { get; protected set; } = "https://api.mailjet.com";
         public string Path { get; protected set; } = string.Empty;

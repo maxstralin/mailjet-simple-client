@@ -5,6 +5,7 @@ using Mailjet.SimpleClient.Core.Extensions;
 using Mailjet.SimpleClient.Core.Interfaces;
 using Mailjet.SimpleClient.Core.Models.Options;
 using Mailjet.SimpleClient.Core.Models.Responses;
+using Mailjet.SimpleClient.Core.Models.Responses.Emailing;
 using Mailjet.SimpleClient.Extensions;
 using Mailjet.SimpleClient.Tests.Mocks;
 using Microsoft.Extensions.DependencyInjection;

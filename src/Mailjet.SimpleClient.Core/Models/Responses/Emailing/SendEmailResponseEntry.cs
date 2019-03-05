@@ -3,7 +3,7 @@ using System.Linq;
 using Mailjet.SimpleClient.Core.Interfaces;
 using Mailjet.SimpleClient.Core.Models.Errors;
 
-namespace Mailjet.SimpleClient.Core.Models.Responses
+namespace Mailjet.SimpleClient.Core.Models.Responses.Emailing
 {
     public class SendEmailResponseEntry : ISendEmailResponseEntry
     {

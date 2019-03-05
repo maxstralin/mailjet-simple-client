@@ -7,6 +7,8 @@ using Mailjet.SimpleClient.Core.Interfaces;
 using Mailjet.SimpleClient.Core.Models.Options;
 using Mailjet.SimpleClient.Core.Models.Requests;
 using Mailjet.SimpleClient.Core.Models.Responses;
+using Mailjet.SimpleClient.Core.Models.Responses.Emailing;
+using Mailjet.SimpleClient.Core.Serialisers;
 using Mailjet.SimpleClient.Logging;
 using Newtonsoft.Json;
 
@@ -31,7 +33,7 @@ namespace Mailjet.SimpleClient
             {
                 var emails = emailMessages.ToList();
                 Log.Info($"Sending {emails.Count} emails");
-                Log.Debug("Email options: " + JsonConvert.SerializeObject(Options.EmailOptions));
+                Log.Debug("Email options: " + LogSerialiser.Serialise(Options.EmailOptions));
                 var req = new SendEmailRequest(emails, Options);
                 var res = await client.SendRequestAsync(req);
 

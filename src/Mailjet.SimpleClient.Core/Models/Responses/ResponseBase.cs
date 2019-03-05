@@ -4,9 +4,9 @@ using Newtonsoft.Json.Linq;
 
 namespace Mailjet.SimpleClient.Core.Models.Responses
 {
-    public class Response : IResponse
+    public class ResponseBase : IResponse
     {
-        public Response(JToken rawResponse, int statusCode, bool successful)
+        public ResponseBase(JToken rawResponse, int statusCode, bool successful)
         {
             RawResponse = rawResponse;
             StatusCode = statusCode;

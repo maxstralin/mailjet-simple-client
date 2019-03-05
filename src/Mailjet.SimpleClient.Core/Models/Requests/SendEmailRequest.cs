@@ -10,7 +10,7 @@ using Mailjet.SimpleClient.Core.Models.Options;
 
 namespace Mailjet.SimpleClient.Core.Models.Requests
 {
-    public class SendEmailRequest : BaseRequest
+    public class SendEmailRequest : RequestBase
     {
         public SendEmailRequest(IEnumerable<IEmailMessage> emailMessages, IMailjetOptions options)
         {
