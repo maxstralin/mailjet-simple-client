@@ -19,8 +19,11 @@ namespace Mailjet.SimpleClient
 
         public MailjetSmsClient(IMailjetSimpleClient client, IMailjetOptions options)
         {
-            this.client = client;
-            this.options = options;
+            this.client = client ?? throw new ArgumentNullException(nameof(client));
+            this.options = options ?? throw new ArgumentNullException(nameof(options));
+
+            if (string.IsNullOrEmpty(options.Token)) throw new ArgumentException(nameof(options.Token), nameof(options.Token)+" can't be empty or null");
+
         }
 
         public async Task<ISendSmsResponse> SendAsync(ISmsMessage smsMessage)
@@ -34,8 +37,10 @@ namespace Mailjet.SimpleClient
 
         public async Task<IEnumerable<ISendSmsResponse>> SendAsync(IEnumerable<ISmsMessage> smsMessages)
         {
+            //Start sending all messages async
             var tasks = smsMessages.Select(SendAsync).ToList();
             Log.Info($"Sending {tasks.Count} SMS");
+            //Await for all messages, return results
             return await Task.WhenAll(tasks);
         }
 

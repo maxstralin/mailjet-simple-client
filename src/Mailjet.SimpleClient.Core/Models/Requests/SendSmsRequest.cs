@@ -23,7 +23,7 @@ namespace Mailjet.SimpleClient.Core.Models.Requests
             AuthenticationHeaderValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{options.PublicKey}:{options.PrivateKey}")));
             SetRequestBody(smsMessage);
             HttpMethod = new HttpMethod("POST");
-            Path = "/v4/sms-send";
+            Path = "v4/sms-send";
         }
     }
 }
