@@ -55,7 +55,8 @@ namespace Mailjet.SimpleClient.Tests
                 ItExpr.IsAny<CancellationToken>()).Returns(Task.FromResult(httpResponse));
 
             var httpClient = new HttpClient(messageHandler.Object);
-            var simpleClient = new MailjetSimpleClient(httpClient);
+            var simpleClient = new MailjetSimpleClient();
+            simpleClient.UseHttpClient(httpClient);
             options.Token = "SomeToken";
             var smsClient = new MailjetSmsClient(simpleClient, options);
 

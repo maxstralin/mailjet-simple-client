@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Mailjet.SimpleClient.Core.Exceptions;
@@ -101,6 +102,13 @@ namespace Mailjet.SimpleClient.Tests
             var apiVersion = EmailApiVersion.V3_1;
             var options = new MailjetEmailOptions();
             Assert.Equal(options.EmailApiVersion, apiVersion);
+        }
+
+        [Fact]
+        public void Test_ThrowsIfParametersAreNull()
+        {
+            Assert.Throws<ArgumentNullException>(() => new MailjetEmailClient(null, MailjetOptions));
+            Assert.Throws<ArgumentNullException>(() => new MailjetEmailClient(new MailjetSimpleClient(), null));
         }
     }
 }
