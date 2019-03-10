@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Mailjet.SimpleClient.Core.Converters;
 using Mailjet.SimpleClient.Core.Interfaces;
 using Newtonsoft.Json;
 
@@ -16,9 +17,19 @@ namespace Mailjet.SimpleClient.Core.Models.Responses.Sms
 
         [JsonProperty("SMSCount")]
         public int SmsCount { get; set; }
+
         [JsonProperty("CreationTS")]
-        public long CreationTimestamp { get; set; }
+        public long CreationTs { get; set; }
+        public DateTime CreationTimestamp => DateTimeOffset.FromUnixTimeSeconds(CreationTs).UtcDateTime;
+
         [JsonProperty("SentTS")]
-        public long SentTimestamp { get; set; }
+        public long SentTs { get; set; }
+
+        public DateTime SentTimestamp => DateTimeOffset.FromUnixTimeSeconds(SentTs).UtcDateTime;
+
+        [JsonConverter(typeof(InterfaceJsonConverter<SendSmsCost>))]
+        public ISendSmsCost Cost { get; set; }
+        [JsonConverter(typeof(InterfaceJsonConverter<SendSmsStatus>))]
+        public ISendSmsStatus Status { get; set; }
     }
 }

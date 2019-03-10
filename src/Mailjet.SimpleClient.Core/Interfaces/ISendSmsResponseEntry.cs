@@ -1,4 +1,6 @@
-﻿namespace Mailjet.SimpleClient.Core.Interfaces
+﻿using System;
+
+namespace Mailjet.SimpleClient.Core.Interfaces
 {
     public interface ISendSmsResponseEntry
     {
@@ -7,7 +9,11 @@
         string Text { get; set; }
         int MessageId { get; set; }
         int SmsCount { get; set; }
-        long CreationTimestamp { get; set; }
-        long SentTimestamp { get; set; }
+        long CreationTs { get; set; }
+        DateTime CreationTimestamp { get; }
+        long SentTs { get; set; }
+        DateTime SentTimestamp { get; }
+        ISendSmsCost Cost { get; set; }
+        ISendSmsStatus Status { get; set; }
     }
 }

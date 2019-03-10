@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Mailjet.SimpleClient.Core.Models.Requests;
 using Mailjet.SimpleClient.Core.Models.Responses.Sms;
 using Mailjet.SimpleClient.Core.Models.Sms;
+using Mailjet.SimpleClient.Core.Serialisers;
 using Moq;
 using Moq.Protected;
 using Newtonsoft.Json.Linq;
@@ -39,11 +40,20 @@ namespace Mailjet.SimpleClient.Tests
             var options = MailjetOptions;
             var entry = new SendSmsResponseEntry
             {
-                CreationTimestamp = DateTime.Now.Ticks,
-                SentTimestamp = DateTime.Now.Ticks,
-                From = "Test SMS"
+                CreationTs = DateTimeOffset.Now.ToUnixTimeSeconds(),
+                SentTs = DateTimeOffset.Now.ToUnixTimeSeconds(),
+                From = "Test SMS",
+                Cost = new SendSmsCost
+                {
+                    Value = 123.321,
+                    Currency = "EUR"
+                },
+                Status = new SendSmsStatus
+                {
+                    SmsStatus = (SmsStatus)2
+                }
             };
-            var smsResponse = new SendSmsResponse(entry, JToken.FromObject(entry), 200, true);
+            var smsResponse = new SendSmsResponse(entry, MailjetSerialiser.Serialise(entry).ToString(), 200, true);
 
             var httpResponse = new HttpResponseMessage((HttpStatusCode)smsResponse.StatusCode)
             {
@@ -64,7 +74,7 @@ namespace Mailjet.SimpleClient.Tests
             
             Assert.All(res, response =>
             {
-                Assert.Equal(entry.CreationTimestamp, response.Data.CreationTimestamp);
+                Assert.Equal(entry.CreationTs, response.Data.CreationTs);
             });
 
         }

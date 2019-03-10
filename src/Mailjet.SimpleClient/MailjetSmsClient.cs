@@ -8,10 +8,11 @@ using Mailjet.SimpleClient.Core.Models.Requests;
 using Mailjet.SimpleClient.Core.Models.Responses.Sms;
 using Mailjet.SimpleClient.Core.Serialisers;
 using Mailjet.SimpleClient.Logging;
+using Newtonsoft.Json;
 
 namespace Mailjet.SimpleClient
 {
-    public class MailjetSmsClient
+    public class MailjetSmsClient : IMailjetSmsClient
     {
         private readonly IMailjetSimpleClient client;
         private readonly IMailjetOptions options;
@@ -31,7 +32,7 @@ namespace Mailjet.SimpleClient
             Log.Info("Sending an SMS");
             Log.Debug("SMS options: " + LogSerialiser.Serialise(options.SmsOptions));
             var response = await client.SendRequestAsync(new SendSmsRequest(smsMessage, options));
-            return new SendSmsResponse(response.RawResponse.ToObject<SendSmsResponseEntry>(), response.RawResponse,
+            return new SendSmsResponse(JsonConvert.DeserializeObject<SendSmsResponseEntry>(response.RawResponse), response.RawResponse,
                 response.StatusCode, response.Successful);
         }
 

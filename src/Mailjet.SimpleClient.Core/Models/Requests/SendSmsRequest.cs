@@ -20,7 +20,7 @@ namespace Mailjet.SimpleClient.Core.Models.Requests
 
             if (options.SmsOptions.SmsApiVersion != SmsApiVersion.V4) throw new UnsupportedApiVersionException();
 
-            AuthenticationHeaderValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{options.PublicKey}:{options.PrivateKey}")));
+            AuthenticationHeaderValue = new AuthenticationHeaderValue("Bearer", options.Token);
             SetRequestBody(smsMessage);
             HttpMethod = new HttpMethod("POST");
             Path = "v4/sms-send";

@@ -12,7 +12,7 @@ using Xunit;
 
 namespace Mailjet.SimpleClient.Tests
 {
-    public class RequestTests : ConfigurationFixture
+    public class SendEmailRequestTests : ConfigurationFixture
     {
         [Fact]
         public void Test_MessagesAreAlwaysInArray()
@@ -41,7 +41,7 @@ namespace Mailjet.SimpleClient.Tests
         }
 
         [Fact]
-        public void Test_AuthenicationHeaderSetCorrectly()
+        public void Test_AuthenticationHeaderSetCorrectly()
         {
             var msg = new EmailMessage("Test", "dummy@test.dev");
             var expectedResult = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{MailjetOptions.PublicKey}:{MailjetOptions.PrivateKey}"));

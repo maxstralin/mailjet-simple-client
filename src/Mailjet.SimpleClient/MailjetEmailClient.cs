@@ -11,6 +11,7 @@ using Mailjet.SimpleClient.Core.Models.Responses.Emailing;
 using Mailjet.SimpleClient.Core.Serialisers;
 using Mailjet.SimpleClient.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Mailjet.SimpleClient
 {
@@ -37,8 +38,10 @@ namespace Mailjet.SimpleClient
                 var req = new SendEmailRequest(emails, Options);
                 var res = await client.SendRequestAsync(req);
 
+                var token = JToken.Parse(res.RawResponse);
+
                 return new SendEmailResponse(
-                    res.RawResponse["Messages"]?.ToObject<List<SendEmailResponseEntry>>(),
+                    token["Messages"]?.ToObject<List<SendEmailResponseEntry>>(),
                     res);
             }
             catch (Exception e)

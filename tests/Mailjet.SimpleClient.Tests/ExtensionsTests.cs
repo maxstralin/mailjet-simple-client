@@ -30,14 +30,18 @@ namespace Mailjet.SimpleClient.Tests
         public void Test_ValidateDIMailjetClients()
         {
             var services = new ServiceCollection();
-            services.AddMailjetClients(a => a.PrivateKey = MailjetOptions.PrivateKey);
+            services.AddMailjetClients(a => { a.PrivateKey = MailjetOptions.PrivateKey;
+                a.Token = MailjetOptions.Token;
+            });
 
             var provider = services.BuildServiceProvider();
             var emailClient = provider.GetRequiredService<IMailjetEmailClient>();
+            var smsClient = provider.GetRequiredService<IMailjetSmsClient>();
             var simpleClient = provider.GetRequiredService<IMailjetSimpleClient>();
             var options = provider.GetRequiredService<IMailjetOptions>();
 
             Assert.IsType<MailjetEmailClient>(emailClient);
+            Assert.IsType<MailjetSmsClient>(smsClient);
             Assert.IsType<MailjetSimpleClient>(simpleClient);
             Assert.IsType<MailjetOptions>(options);
         }

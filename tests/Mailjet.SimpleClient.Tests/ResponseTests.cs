@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using Mailjet.SimpleClient.Core.Models.Responses;
 using Mailjet.SimpleClient.Core.Models.Responses.Emailing;
+using Mailjet.SimpleClient.Core.Models.Responses.Sms;
 using Xunit;
 
 namespace Mailjet.SimpleClient.Tests
@@ -24,5 +26,25 @@ namespace Mailjet.SimpleClient.Tests
             Assert.Equal(serialised, reserialised);
 
         }
+
+        [Fact]
+        public void Test_ValidateTimestampSendSmsResponseEntry()
+        {
+            var expectedCreation = DateTimeOffset.UtcNow;
+            var expectedSent = DateTimeOffset.Now.AddDays(1);
+
+            var entry = new SendSmsResponseEntry
+            {
+                CreationTs = expectedCreation.ToUnixTimeSeconds(),
+                SentTs = expectedSent.ToUnixTimeSeconds()
+            };
+
+            Assert.Equal(expectedCreation.ToUnixTimeSeconds(), entry.CreationTs);
+            Assert.Equal(expectedSent.ToUnixTimeSeconds(), entry.SentTs);
+
+            Assert.Equal(DateTimeOffset.FromUnixTimeSeconds(entry.CreationTs).UtcDateTime, entry.CreationTimestamp);
+            Assert.Equal(DateTimeOffset.FromUnixTimeSeconds(entry.SentTs).UtcDateTime, entry.SentTimestamp);
+        }
+
     }
 }

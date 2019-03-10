@@ -34,7 +34,7 @@ namespace Mailjet.SimpleClient
             Log.Info($"Request was successful: " +res.IsSuccessStatusCode);
             var content = await res.Content.ReadAsStringAsync();
             Log.Debug("Response body: "+content);
-            return new ResponseBase(JToken.Parse(content), (int)res.StatusCode, res.IsSuccessStatusCode);
+            return new ResponseBase(content, (int)res.StatusCode, res.IsSuccessStatusCode);
         }
 
         public void UseHttpClient(HttpClient httpClient)
