@@ -4,7 +4,7 @@
 <a href="https://travis-ci.org/maxstralin/mailjet-simple-client" target="_blank"><img alt="Nuget package" title="Build overview" src="https://img.shields.io/travis/maxstralin/mailjet-simple-client.svg?style=flat-square" /></a>
 <a href="https://www.nuget.org/packages/Mailjet.SimpleClient/" target="_blank"><img alt="Nuget package - stable" title="Nuget package - stable" src="https://img.shields.io/nuget/v/Mailjet.SimpleClient.svg?color=1081c2&label=Stable&style=flat-square" /></a>
 <a href="https://www.nuget.org/packages/Mailjet.SimpleClient/" target="_blank"><img alt="Nuget package - latest" title="Nuget package - latest" src="https://img.shields.io/nuget/vpre/Mailjet.SimpleClient.svg?label=Latest&style=flat-square" /></a>
-<a href="./LICENCE" target="_blank"><img alt="Nuget package" title="MIT Licence" src="https://img.shields.io/github/license/maxstralin/mailjet-simple-client.svg?style=flat-square" /></a>
+<a href="./LICENSE" target="_blank"><img alt="Nuget package" title="MIT Licence" src="https://img.shields.io/github/license/maxstralin/mailjet-simple-client.svg?style=flat-square" /></a>
 ![]()
 
 Currently supports sending transactional and template emails, and sending SMS messages. You can easily [customise](#customise) the 
