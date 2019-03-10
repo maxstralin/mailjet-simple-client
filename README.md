@@ -7,7 +7,7 @@
 <a href="./LICENSE" target="_blank"><img alt="Nuget package" title="MIT Licence" src="https://img.shields.io/github/license/maxstralin/mailjet-simple-client.svg?style=flat-square" /></a>
 ![]()
 
-Currently supports sending transactional and template emails, and sending SMS messages. You can easily [customise](#customise) the 
+Currently supports sending transactional and template emails, and sending SMS messages. You can easily [customise](#customise) the behaviour.
 
 Contributions are very welcome, in any form or shape!
 
