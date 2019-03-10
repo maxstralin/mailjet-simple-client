@@ -1,14 +1,15 @@
 # Mailjet Simple Client <img src="assets/LogoMJ_Yellow_RVB.png" alt="Mailjet Logo" title="Mailjet Logo" height="50px" />
-> A simple, yet customisable, client for interacting with Mailjet
+> A .NET client for Mailjet: simple, yet customisable
 
-![](https://img.shields.io/travis/maxstralin/mailjet-simple-client.svg?style=flat-square)
-<a href="https://www.nuget.org/packages/Mailjet.SimpleClient/" target="_blank"><img alt="Nuget package" title="Nuget package" src="https://img.shields.io/nuget/v/Mailjet.SimpleClient.svg?color=1081c2&label=Stable&style=flat-square" /></a>
-<a href="https://www.nuget.org/packages/Mailjet.SimpleClient/" target="_blank"><img alt="Nuget package" title="Nuget package" src="https://img.shields.io/nuget/vpre/Mailjet.SimpleClient.svg?label=Latest&style=flat-square" /></a>
-![](https://img.shields.io/github/license/maxstralin/mailjet-simple-client.svg?style=flat-square)
+<a href="https://travis-ci.org/maxstralin/mailjet-simple-client" target="_blank"><img alt="Nuget package" title="Build overview" src="https://img.shields.io/travis/maxstralin/mailjet-simple-client.svg?style=flat-square" /></a>
+<a href="https://www.nuget.org/packages/Mailjet.SimpleClient/" target="_blank"><img alt="Nuget package - stable" title="Nuget package - stable" src="https://img.shields.io/nuget/v/Mailjet.SimpleClient.svg?color=1081c2&label=Stable&style=flat-square" /></a>
+<a href="https://www.nuget.org/packages/Mailjet.SimpleClient/" target="_blank"><img alt="Nuget package - latest" title="Nuget package - latest" src="https://img.shields.io/nuget/vpre/Mailjet.SimpleClient.svg?label=Latest&style=flat-square" /></a>
+<a href="./LICENCE" target="_blank"><img alt="Nuget package" title="MIT Licence" src="https://img.shields.io/github/license/maxstralin/mailjet-simple-client.svg?style=flat-square" /></a>
+![]()
 
-Note that currently transactional emails, V3.1, is supported but you can easily customise/add behaviour yourself, see [Customise](#customise).
+Currently supports sending transactional and template emails, and sending SMS messages. You can easily [customise](#customise) the 
 
-At the moment the code base is work in progress but contributions are very welcome still.
+Contributions are very welcome, in any form or shape!
 
 ## Prerequisites
 
@@ -66,7 +67,10 @@ public void ConfigureServices(IServiceCollection services)
 ```csharp
 var emailClient = new MailjetEmailClient(new MailjetSimpleClient(), new MailjetOptions());
 ```
-
+#### Email client
+```csharp
+var smsClient = new MailjetSmsClient(new MailjetSimpleClient(), new MailjetOptions());
+```
 #### Low level client
 ```csharp
 var simpleClient = new MailjetSimpleClient();

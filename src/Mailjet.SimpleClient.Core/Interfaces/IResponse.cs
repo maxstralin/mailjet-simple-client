@@ -16,9 +16,14 @@ namespace Mailjet.SimpleClient.Core.Interfaces
         /// </summary>
         bool Successful { get; }
         /// <summary>
-        /// Raw JSON data
+        /// Raw response data
         /// </summary>
-        JToken RawResponse { get; }
+        string RawResponse { get; }
+
+        /// <summary>
+        /// Response body parsed into JSON token
+        /// </summary>
+        JToken ParsedResponse { get; }
 
         IError Error { get; }
     }

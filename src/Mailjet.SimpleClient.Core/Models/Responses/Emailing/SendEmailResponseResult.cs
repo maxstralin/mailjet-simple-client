@@ -1,7 +1,7 @@
 ﻿using Mailjet.SimpleClient.Core.Interfaces;
 using Newtonsoft.Json;
 
-namespace Mailjet.SimpleClient.Core.Models.Responses
+namespace Mailjet.SimpleClient.Core.Models.Responses.Emailing
 {
     public class SendEmailResponseResult : ISendEmailResponseResult
     {

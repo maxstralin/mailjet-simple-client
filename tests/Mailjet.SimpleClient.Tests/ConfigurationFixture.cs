@@ -21,6 +21,7 @@ namespace Mailjet.SimpleClient.Tests
                 EmailOptions = {
                     SandboxMode = true
                 },
+                Token = "TEST",
                 PrivateKey = Environment.GetEnvironmentVariable("MAILJET_PRIVATE_KEY"),
                 PublicKey = Environment.GetEnvironmentVariable("MAILJET_PUBLIC_KEY")
             };
