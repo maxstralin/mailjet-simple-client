@@ -67,7 +67,7 @@ public void ConfigureServices(IServiceCollection services)
 ```csharp
 var emailClient = new MailjetEmailClient(new MailjetSimpleClient(), new MailjetOptions());
 ```
-#### Email client
+#### SMS client
 ```csharp
 var smsClient = new MailjetSmsClient(new MailjetSimpleClient(), new MailjetOptions());
 ```
@@ -85,6 +85,10 @@ services.AddMailjetOptions(IMailjetOptions)
 
 ```csharp
 services.AddMailjetSimpleClient<YourMailjetSimpleClient>()
+```
+
+```csharp
+services.AddMailjetSmsClient<YourMailjetSmsClient>()
 ```
 
 ```csharp
