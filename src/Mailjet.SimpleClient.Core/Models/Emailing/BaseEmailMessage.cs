@@ -31,13 +31,13 @@ namespace Mailjet.SimpleClient.Core.Models.Emailing
         /// <summary>
         /// If template language should be enabled, defaults to false.
         /// </summary>
-        [JsonProperty(PropertyName = "TemplateLanguage")]
+        [JsonProperty("TemplateLanguage")]
         public bool UseTemplateLanguage { get; set; } = false;
 
         /// <summary>
         /// Add your own ID to the message
         /// </summary>
-        [JsonProperty(PropertyName = "CustomID")]
+        [JsonProperty("CustomID")]
         public string CustomId { get; set; }
 
         /// <summary>
@@ -48,13 +48,13 @@ namespace Mailjet.SimpleClient.Core.Models.Emailing
         /// <summary>
         /// If there's a template language error, send information to this email entity.
         /// </summary>
-        [JsonProperty(PropertyName = "TemplateErrorReporting")]
+        [JsonProperty("TemplateErrorReporting")]
         public IEmailEntity ReportTemplateErrorTo { get; set; }
 
         /// <summary>
         /// If template language errors should be reported. If true, will send the error to <see cref="ReportTemplateErrorTo"/>
         /// </summary>
-        [JsonProperty(PropertyName = "TemplateErrorDeliver")]
+        [JsonProperty("TemplateErrorDeliver")]
         public bool? SendTemplateErrors { get; set; }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Mailjet.SimpleClient.Core.Models.Emailing
         /// </summary>
         public bool DeduplicateCampaign { get; set; } = false;
 
-        [JsonProperty(PropertyName = "URLTags")]
+        [JsonProperty("URLTags")]
         private string urlTags
         {
             get

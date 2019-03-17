@@ -11,7 +11,7 @@ namespace Mailjet.SimpleClient.Core.Models.Emailing
         /// <summary>
         /// The ID to use for inline use, e.g. &lt;img src="cid:MyId"/&gt;
         /// </summary>
-        [JsonProperty(PropertyName = "ContentID")]
+        [JsonProperty("ContentID")]
         public string ContentId { get; set; }
     }
 }

@@ -22,14 +22,15 @@ namespace Mailjet.SimpleClient
 
         public async Task<IResponse> SendRequestAsync(IMailjetRequest request)
         {
-            var req = new HttpRequestMessage(request.HttpMethod, request.Uri)
+            var req = new HttpRequestMessage(request.HttpMethod, request.Uri);
+            if (request.RequestBody != null)
             {
-                Content = new StringContent(request.RequestBody.ToString(), Encoding.UTF8, "application/json"),
-            };
+                req.Content = new StringContent(request.RequestBody.ToString(), Encoding.UTF8, "application/json");
+            }
             req.Headers.Authorization = request.AuthenticationHeaderValue;
             req.Headers.UserAgent.ParseAdd(request.UserAgent);
             Log.Info($"Sending {request.HttpMethod} request to {request.Uri}");
-            Log.Debug($"Request body: {Environment.NewLine} {request.RequestBody.ToString()}");
+            Log.Debug($"Request body: {Environment.NewLine} {request.RequestBody?.ToString()}");
             var res = await HttpClient.SendAsync(req);
             Log.Info($"Request was successful: " +res.IsSuccessStatusCode);
             var content = await res.Content.ReadAsStringAsync();

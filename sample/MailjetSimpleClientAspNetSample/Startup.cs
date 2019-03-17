@@ -37,18 +37,23 @@ namespace MailjetSimpleClientAspNetSample
             var email = new EmailMessage("Test Testsson", "test@test.com");
             //var emailResponse = mailjetEmailClient.SendAsync(email).GetAwaiter().GetResult();
 
-            var sms = new SmsMessage
+            //var sms = new SmsMessage
+            //{
+            //    To = Environment.GetEnvironmentVariable("MAILJET_TEST_PHONE"),
+            //    From = "Max Test",
+            //    Text = "You should receive this :)"
+            //};
+            //var smsResponse = mailjetSmsClient.SendAsync(sms).GetAwaiter().GetResult();
+
+            var msgs = mailjetEmailClient.GetMessagesAsync(new MessageFilters
             {
-                To = Environment.GetEnvironmentVariable("MAILJET_TEST_PHONE"),
-                From = "Max Test",
-                Text = "You should receive this :)"
-            };
-            var smsResponse = mailjetSmsClient.SendAsync(sms).GetAwaiter().GetResult();
+                FromTimestamp = DateTime.UtcNow.AddMonths(-1)
+            }).GetAwaiter().GetResult();
 
             //The low level MailjetSimpleClient takes an IRequestFactory for sending a request. Anything that implements this (properly) can send whatever type of request
             //This is essentially the equivalent of what is being done in SendAsync() above.
-            var basicResponse = mailjetSimpleClient.SendRequestAsync(new SendEmailRequest(email, mailjetOptions)).GetAwaiter().GetResult();
-            var basicResponse2 = mailjetSimpleClient.SendRequestAsync(new SendSmsRequest(sms, mailjetOptions));
+            //var basicResponse = mailjetSimpleClient.SendRequestAsync(new SendEmailRequest(email, mailjetOptions)).GetAwaiter().GetResult();
+            //var basicResponse2 = mailjetSimpleClient.SendRequestAsync(new SendSmsRequest(sms, mailjetOptions));
 
             if (env.IsDevelopment())
             {

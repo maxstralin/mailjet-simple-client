@@ -32,12 +32,12 @@ namespace Mailjet.SimpleClient.Core.Models.Emailing
         /// <summary>
         /// The HTML body
         /// </summary>
-        [JsonProperty(PropertyName = "HtmlPart")]
+        [JsonProperty("HtmlPart")]
         public string HtmlBody { get; set; }
         /// <summary>
         /// Plain text body
         /// </summary>
-        [JsonProperty(PropertyName = "TextPart")]
+        [JsonProperty("TextPart")]
         public string PlainTextBody { get; set; }
         
     }

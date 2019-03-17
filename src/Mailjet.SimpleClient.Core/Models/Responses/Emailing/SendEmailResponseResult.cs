@@ -6,9 +6,9 @@ namespace Mailjet.SimpleClient.Core.Models.Responses.Emailing
     public class SendEmailResponseResult : ISendEmailResponseResult
     {
         public string Email { get; set; }
-        [JsonProperty(PropertyName = "MessageUUID")]
+        [JsonProperty("MessageUUID")]
         public string MessageUuid { get; set; }
-        [JsonProperty(PropertyName = "MessageID")]
+        [JsonProperty("MessageID")]
         public long MessageId { get; set; }
         public string MessageHref { get; set; }
     }

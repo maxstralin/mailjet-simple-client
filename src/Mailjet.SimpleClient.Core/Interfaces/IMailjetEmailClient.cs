@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Mailjet.SimpleClient.Core.Models.Responses.Emailing;
 
 namespace Mailjet.SimpleClient.Core.Interfaces
 {
@@ -10,5 +11,10 @@ namespace Mailjet.SimpleClient.Core.Interfaces
     {
         Task<ISendEmailResponse> SendAsync(IEmailMessage emailMessage);
         Task<ISendEmailResponse> SendAsync(IEnumerable<IEmailMessage> emailMessages);
+        Task<IGetMessagesResponse> GetMessagesAsync(IQueryFilter queryFilter);
+        Task<IResponse> GetMessageAsync(int messageId);
+        Task<IResponse> GetMessageHistoryAsync(int messageId);
+        Task<IResponse> GetMessageHistoryAsync(IQueryFilter queryFilter);
+
     }
 }

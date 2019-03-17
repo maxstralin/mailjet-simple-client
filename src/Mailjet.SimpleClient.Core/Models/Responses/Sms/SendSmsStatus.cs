@@ -9,7 +9,7 @@ namespace Mailjet.SimpleClient.Core.Models.Responses.Sms
 {
     public class SendSmsStatus : ISendSmsStatus
     {
-        [JsonProperty(PropertyName = "Code")]
+        [JsonProperty("Code")]
         public SmsStatus SmsStatus { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

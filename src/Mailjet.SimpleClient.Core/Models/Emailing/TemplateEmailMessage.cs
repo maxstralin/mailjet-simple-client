@@ -24,7 +24,7 @@ namespace Mailjet.SimpleClient.Core.Models.Emailing
         /// <param name="senderName">Name in From</param>
         /// <param name="senderEmail">Email in From</param>
         public TemplateEmailMessage(int templateId, string senderName, string senderEmail) : this(templateId, new EmailEntity(senderName, senderEmail)) { }
-        [JsonProperty(PropertyName = "TemplateID")]
+        [JsonProperty("TemplateID")]
         public int TemplateId { get; }
     }
 }

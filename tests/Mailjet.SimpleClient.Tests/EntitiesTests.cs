@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Mailjet.SimpleClient.Core.Models.Emailing;
+using Mailjet.SimpleClient.Core.Models.Responses.Emailing;
 using Mailjet.SimpleClient.Core.Serialisers;
 using Mailjet.SimpleClient.Tests.Mocks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace Mailjet.SimpleClient.Tests
@@ -42,5 +46,38 @@ namespace Mailjet.SimpleClient.Tests
             Assert.Equal("test=true&cool=false", serialisedWithTags.Value<string>(propertyName));
             Assert.Null(serialisedWithoutTags.Value<string>(propertyName));
         }
+
+        [Fact]
+        public void Test_CreateQueryParamsForMessageFilters()
+        {
+            var filter = new MessageFilters()
+            {
+                CampaignId = 1,
+                FromType = EmailType.Marketing,
+                ToTimestamp = new DateTime(2019,03,10, 17,00,00)
+            };
+
+            var queryString = filter.CreateQueryParamsString();
+
+            Assert.Equal("campaign=1&fromType=2&ToTs=2019-03-10T17:00:00", queryString, StringComparer.CurrentCultureIgnoreCase);
+        }
+
+        [Fact]
+        public void Test_EmailStatusEnumDeserialisation()
+        {
+            var json = new JObject
+            {
+                {"status", JToken.FromObject("hardbounced")}
+            };
+            var expected = new GetMessagesResponseEntry
+            {
+                Status = EmailStatus.Hardbounced
+            };
+
+            var actual = JsonConvert.DeserializeObject<GetMessagesResponseEntry>(json.ToString());
+
+            Assert.Equal(expected.Status, actual.Status);
+        }
+
     }
 }
