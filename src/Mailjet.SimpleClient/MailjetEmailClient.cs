@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Mailjet.SimpleClient.Core.Converters;
 using Mailjet.SimpleClient.Core.Exceptions;
 using Mailjet.SimpleClient.Core.Interfaces;
 using Mailjet.SimpleClient.Core.Models.Emailing;
@@ -54,15 +55,17 @@ namespace Mailjet.SimpleClient
 
         public Task<ISendEmailResponse> SendAsync(IEmailMessage emailMessage) => SendAsync(new[] { emailMessage });
 
-        public async Task<IGetMessagesResponse> GetMessagesAsync(MessageFilters messageFilters)
-        {
-            return await ((IMailjetEmailClient) this).GetMessagesAsync(messageFilters);
-        }
-
-        async Task<IGetMessagesResponse> IMailjetEmailClient.GetMessagesAsync(IQueryFilter queryFilter)
+        public async Task<IGetMessagesResponse> GetMessagesAsync(IQueryFilter queryFilter)
         {
             var res = await client.SendRequestAsync(new GetEmailsRequest(Options, queryFilter));
-            return new GetMessagesResponse(res.ParsedResponse.ToObject<List<GetMessagesResponseEntry>>(), res.RawResponse, res.StatusCode, res.Successful);
+            var data = res.ParsedResponse.ToObject<RetrieveDetailsResponse<IGetMessagesResponseEntry>>(
+                new JsonSerializer
+                {
+                    Converters = { new InterfaceJsonConverter<IGetMessagesResponseEntry, GetMessagesResponseEntry>() }
+                }
+                );
+
+            return new GetMessagesResponse(data, res.RawResponse, res.StatusCode, res.Successful);
         }
 
         public async Task<IResponse> GetMessageAsync(int messageId)

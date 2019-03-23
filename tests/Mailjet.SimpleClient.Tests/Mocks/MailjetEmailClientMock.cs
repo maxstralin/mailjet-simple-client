@@ -17,7 +17,7 @@ namespace Mailjet.SimpleClient.Tests.Mocks
             throw new NotImplementedException();
         }
 
-        public async Task<IResponse> GetMessagesAsync(IQueryFilter queryFilter)
+        public async Task<IGetMessagesResponse> GetMessagesAsync(IQueryFilter queryFilter)
         {
             throw new NotImplementedException();
         }

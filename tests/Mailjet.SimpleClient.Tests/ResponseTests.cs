@@ -43,7 +43,7 @@ namespace Mailjet.SimpleClient.Tests
             Assert.Equal(expectedSent.ToUnixTimeSeconds(), entry.SentTs);
 
             Assert.Equal(DateTimeOffset.FromUnixTimeSeconds(entry.CreationTs).UtcDateTime, entry.CreationTimestamp);
-            Assert.Equal(DateTimeOffset.FromUnixTimeSeconds(entry.SentTs).UtcDateTime, entry.SentTimestamp);
+            Assert.Equal(DateTimeOffset.FromUnixTimeSeconds(entry.SentTs.Value).UtcDateTime, entry.SentTimestamp);
         }
 
     }
