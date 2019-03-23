@@ -23,9 +23,9 @@ namespace Mailjet.SimpleClient.Core.Models.Responses.Sms
         public DateTime CreationTimestamp => DateTimeOffset.FromUnixTimeSeconds(CreationTs).UtcDateTime;
 
         [JsonProperty("SentTS")]
-        public long SentTs { get; set; }
+        public long? SentTs { get; set; }
 
-        public DateTime SentTimestamp => DateTimeOffset.FromUnixTimeSeconds(SentTs).UtcDateTime;
+        public DateTime? SentTimestamp => SentTs != null ? (DateTime?) DateTimeOffset.FromUnixTimeSeconds(SentTs.Value).UtcDateTime : null;
 
         [JsonConverter(typeof(InterfaceJsonConverter<SendSmsCost>))]
         public ISendSmsCost Cost { get; set; }
