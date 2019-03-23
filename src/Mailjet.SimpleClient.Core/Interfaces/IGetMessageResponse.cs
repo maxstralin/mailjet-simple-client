@@ -5,7 +5,7 @@ using Mailjet.SimpleClient.Core.Models.Responses.Emailing;
 
 namespace Mailjet.SimpleClient.Core.Interfaces
 {
-    public interface IGetMessagesResponse : IResponse<IRetrieveDetailsResponse<IEnumerable<IMessageDetails>>>
+    public interface IGetMessageResponse : IResponse<IRetrieveDetailsResponse<IMessageDetails>>
     {
     }
 }

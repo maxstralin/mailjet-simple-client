@@ -55,25 +55,41 @@ namespace Mailjet.SimpleClient
 
         public Task<ISendEmailResponse> SendAsync(IEmailMessage emailMessage) => SendAsync(new[] { emailMessage });
 
-        public async Task<IGetMessagesResponse> GetMessagesAsync(IQueryFilter queryFilter)
+        public async Task<IGetMessagesResponse> GetMessagesAsync(IMessageFilters messageFilters)
         {
-            var res = await client.SendRequestAsync(new GetEmailsRequest(Options, queryFilter));
-            var data = res.ParsedResponse.ToObject<RetrieveDetailsResponse<IEnumerable<IGetMessagesResponseEntry>>>(
+            var res = await client.SendRequestAsync(new GetEmailsRequest(Options, messageFilters));
+            var data = res.ParsedResponse.ToObject<RetrieveDetailsResponse<IEnumerable<IMessageDetails>>>(
                 new JsonSerializer
                 {
-                    Converters = { new InterfaceJsonConverter<IGetMessagesResponseEntry, GetMessagesResponseEntry>() }
+                    Converters = { new InterfaceJsonConverter<IMessageDetails, MessageDetails>() }
                 }
                 );
 
             return new GetMessagesResponse(data, res.RawResponse, res.StatusCode, res.Successful);
         }
 
-        public async Task<IResponse> GetMessageAsync(int messageId)
+        public async Task<IGetMessageResponse> GetMessageAsync(long messageId)
         {
-            throw new NotImplementedException();
+            var res = await client.SendRequestAsync(new GetEmailRequest(Options, messageId));
+
+            var originalData = res.ParsedResponse.ToObject<RetrieveDetailsResponse<IEnumerable<IMessageDetails>>>(
+                new JsonSerializer
+                {
+                    Converters = { new InterfaceJsonConverter<IMessageDetails, MessageDetails>() }
+                }
+            );
+            //API returns an array, even if this will always be a single entry. Let's normalise that result
+            var data = new RetrieveDetailsResponse<IMessageDetails>
+            {
+                Data = originalData.Data?.FirstOrDefault(),
+                Count = originalData.Count,
+                Total = originalData.Total
+            };
+
+            return new GetMessageResponse(data, res.RawResponse, res.StatusCode, res.Successful);
         }
 
-        public async Task<IResponse> GetMessageHistoryAsync(int messageId)
+        public async Task<IResponse> GetMessageHistoryAsync(long messageId)
         {
             throw new NotImplementedException();
         }

@@ -50,6 +50,9 @@ namespace MailjetSimpleClientAspNetSample
                 FromTimestamp = DateTime.UtcNow.AddMonths(-1)
             }).GetAwaiter().GetResult();
 
+            var msg = msgs.Data.Data.First();
+            var res = mailjetEmailClient.GetMessageAsync(msg.Id).GetAwaiter().GetResult();
+
             //The low level MailjetSimpleClient takes an IRequestFactory for sending a request. Anything that implements this (properly) can send whatever type of request
             //This is essentially the equivalent of what is being done in SendAsync() above.
             //var basicResponse = mailjetSimpleClient.SendRequestAsync(new SendEmailRequest(email, mailjetOptions)).GetAwaiter().GetResult();

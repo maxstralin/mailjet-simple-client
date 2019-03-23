@@ -69,12 +69,12 @@ namespace Mailjet.SimpleClient.Tests
             {
                 {"status", JToken.FromObject("hardbounced")}
             };
-            var expected = new GetMessagesResponseEntry
+            var expected = new MessageDetails
             {
                 Status = EmailStatus.Hardbounced
             };
 
-            var actual = JsonConvert.DeserializeObject<GetMessagesResponseEntry>(json.ToString());
+            var actual = JsonConvert.DeserializeObject<MessageDetails>(json.ToString());
 
             Assert.Equal(expected.Status, actual.Status);
         }

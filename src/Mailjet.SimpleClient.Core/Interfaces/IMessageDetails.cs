@@ -3,7 +3,7 @@ using Mailjet.SimpleClient.Core.Models.Emailing;
 
 namespace Mailjet.SimpleClient.Core.Interfaces
 {
-    public interface IGetMessagesResponseEntry
+    public interface IMessageDetails
     {
         /// <summary>
         /// Timestamp indicating when the message arrived in the recipient's mailbox.

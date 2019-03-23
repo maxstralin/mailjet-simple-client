@@ -11,9 +11,14 @@ namespace Mailjet.SimpleClient.Core.Interfaces
     {
         Task<ISendEmailResponse> SendAsync(IEmailMessage emailMessage);
         Task<ISendEmailResponse> SendAsync(IEnumerable<IEmailMessage> emailMessages);
-        Task<IGetMessagesResponse> GetMessagesAsync(IQueryFilter queryFilter);
-        Task<IResponse> GetMessageAsync(int messageId);
-        Task<IResponse> GetMessageHistoryAsync(int messageId);
+        /// <summary>
+        /// Get a list of messages with specific information on the type of content, tracking, sending and delivery.
+        /// </summary>
+        /// <param name="messageFilters">Filtering params</param>
+        /// <returns></returns>
+        Task<IGetMessagesResponse> GetMessagesAsync(IMessageFilters messageFilters);
+        Task<IGetMessageResponse> GetMessageAsync(long messageId);
+        Task<IResponse> GetMessageHistoryAsync(long messageId);
         Task<IResponse> GetMessageHistoryAsync(IQueryFilter queryFilter);
 
     }

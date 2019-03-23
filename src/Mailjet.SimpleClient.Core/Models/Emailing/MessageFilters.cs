@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Mailjet.SimpleClient.Core.Models.Emailing
 {
-    public class MessageFilters : IQueryFilter
+    public class MessageFilters : IMessageFilters
     {
         /// <summary>
         /// Retrieves only messages sent as part of the specified Campaign ID.

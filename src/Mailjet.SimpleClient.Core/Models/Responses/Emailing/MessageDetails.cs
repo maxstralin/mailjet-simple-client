@@ -8,7 +8,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Mailjet.SimpleClient.Core.Models.Responses.Emailing
 {
-    public class GetMessagesResponseEntry : IGetMessagesResponseEntry
+    public class MessageDetails : IMessageDetails
     {
         /// <summary>
         /// Timestamp indicating when the message arrived in the recipient's mailbox.
