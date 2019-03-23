@@ -6,6 +6,6 @@ namespace Mailjet.SimpleClient.Core.Interfaces
     {
         int Count { get; set; }
         int Total { get; set; }
-        IEnumerable<T> Data { get; set; }
+        T Data { get; set; }
     }
 }

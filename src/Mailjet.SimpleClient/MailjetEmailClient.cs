@@ -58,7 +58,7 @@ namespace Mailjet.SimpleClient
         public async Task<IGetMessagesResponse> GetMessagesAsync(IQueryFilter queryFilter)
         {
             var res = await client.SendRequestAsync(new GetEmailsRequest(Options, queryFilter));
-            var data = res.ParsedResponse.ToObject<RetrieveDetailsResponse<IGetMessagesResponseEntry>>(
+            var data = res.ParsedResponse.ToObject<RetrieveDetailsResponse<IEnumerable<IGetMessagesResponseEntry>>>(
                 new JsonSerializer
                 {
                     Converters = { new InterfaceJsonConverter<IGetMessagesResponseEntry, GetMessagesResponseEntry>() }

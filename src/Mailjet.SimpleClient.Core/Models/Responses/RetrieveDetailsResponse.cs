@@ -9,6 +9,6 @@ namespace Mailjet.SimpleClient.Core.Models.Responses
     {
         public int Count { get; set; }
         public int Total { get; set; }
-        public IEnumerable<T> Data { get; set; }
+        public T Data { get; set; }
     }
 }
