@@ -1,5 +1,6 @@
 ﻿using System;
 using Mailjet.SimpleClient.Core.Models.Emailing;
+using Newtonsoft.Json.Linq;
 
 namespace Mailjet.SimpleClient.Core.Interfaces
 {
@@ -93,8 +94,8 @@ namespace Mailjet.SimpleClient.Core.Interfaces
         /// <summary>
         /// Matched SpamAssassin rules.
         /// </summary>
-//TODO: Awaiting reply from Mailjet of what this string will contain, may be an IEnumerable<string>
-        string SpamassassinRules { get; set; }
+        //TODO 1.0: Awaiting documentation details from Mailjet
+        JToken SpamassassinRules { get; set; }
 
         /// <summary>
         /// Indicates whether the current state of the message is permanent (i.e. cannot be changed anymore) or not.

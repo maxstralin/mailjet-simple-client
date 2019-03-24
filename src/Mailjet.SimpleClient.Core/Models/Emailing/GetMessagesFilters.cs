@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Mailjet.SimpleClient.Core.Models.Emailing
 {
-    public class MessageFilters : IMessageFilters
+    public class GetMessagesFilters : IGetMessagesFilters
     {
         /// <summary>
         /// Retrieves only messages sent as part of the specified Campaign ID.
@@ -46,6 +46,12 @@ namespace Mailjet.SimpleClient.Core.Models.Emailing
         /// </summary>
         [JsonProperty("FromID")]
         public string FromId { get; set; }
+
+        /// <inheritdoc />
+        public EmailStatus? EmailStatus { get; set; }
+
+        /// <inheritdoc />
+        public EmailState EmailState { get; set; }
 
         /// <summary>
         /// Retrieves only messages sent after the specified timestamp.

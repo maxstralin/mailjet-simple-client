@@ -25,7 +25,7 @@ namespace Mailjet.SimpleClient.Core.Models.Responses
             }
             catch
             {
-                
+
             }
 
         }
@@ -37,4 +37,16 @@ namespace Mailjet.SimpleClient.Core.Models.Responses
 
         public bool Successful { get; protected set; }
     }
+
+    public class ResponseBase<T> : ResponseBase, IResponse<T> where T : class
+    {
+        public ResponseBase(T data, string rawResponse, int statusCode, bool successful) : base(rawResponse, statusCode, successful)
+        {
+            Data = data;
+        }
+
+        public T Data { get; }
+
+    }
+
 }

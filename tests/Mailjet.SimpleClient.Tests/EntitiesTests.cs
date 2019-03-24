@@ -50,7 +50,7 @@ namespace Mailjet.SimpleClient.Tests
         [Fact]
         public void Test_CreateQueryParamsForMessageFilters()
         {
-            var filter = new MessageFilters()
+            var filter = new GetMessagesFilters()
             {
                 CampaignId = 1,
                 FromType = EmailType.Marketing,

@@ -45,7 +45,7 @@ namespace MailjetSimpleClientAspNetSample
             //};
             //var smsResponse = mailjetSmsClient.SendAsync(sms).GetAwaiter().GetResult();
 
-            var msgs = mailjetEmailClient.GetMessagesAsync(new MessageFilters
+            var msgs = mailjetEmailClient.GetMessagesAsync(new GetMessagesFilters
             {
                 FromTimestamp = DateTime.UtcNow.AddMonths(-1)
             }).GetAwaiter().GetResult();

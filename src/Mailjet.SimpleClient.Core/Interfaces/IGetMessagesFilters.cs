@@ -4,7 +4,7 @@ using Mailjet.SimpleClient.Core.Models.Emailing;
 
 namespace Mailjet.SimpleClient.Core.Interfaces
 {
-    public interface IMessageFilters : IQueryFilter
+    public interface IGetMessagesFilters : IQueryFilter
     {
         /// <summary>
         /// Retrieves only messages sent as part of the specified Campaign ID.
@@ -25,7 +25,7 @@ namespace Mailjet.SimpleClient.Core.Interfaces
         /// Retrieves only messages sent from the specified Sender Email address.
         /// </summary>
         string From { get; set; }
-
+        
         /// <summary>
         /// Retrieves only messages sent from the specified sender domain.
         /// </summary>
@@ -35,6 +35,16 @@ namespace Mailjet.SimpleClient.Core.Interfaces
         /// Retrieves only messages sent from the sender address with the specified ID.
         /// </summary>
         string FromId { get; set; }
+
+        /// <summary>
+        /// Retrieves only messages with the specified status
+        /// </summary>
+        EmailStatus? EmailStatus { get; set; }
+
+        /// <summary>
+        /// Retrieves only non-delivered messages with the respective State ID. The MessageState ID explains why a message was not delivered successfully to the recipient
+        /// </summary>
+        EmailState EmailState { get; set; }
 
         /// <summary>
         /// Retrieves only messages sent after the specified timestamp.
