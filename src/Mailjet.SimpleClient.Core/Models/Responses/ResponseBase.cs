@@ -25,7 +25,7 @@ namespace Mailjet.SimpleClient.Core.Models.Responses
             }
             catch
             {
-                
+                //ignore
             }
 
         }

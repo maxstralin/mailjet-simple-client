@@ -9,9 +9,9 @@ namespace Mailjet.SimpleClient.Core.Models.Responses.Emailing
     {
         public bool Successful => Status == "success";
         public string Status { get; set; }
-        public IEnumerable<ISendEmailResponseResult> To { get; set; } = Enumerable.Empty<SendEmailResponseResult>();
-        public IEnumerable<ISendEmailResponseResult> Cc { get; set; } = Enumerable.Empty<SendEmailResponseResult>();
-        public IEnumerable<ISendEmailResponseResult> Bcc { get; set; } = Enumerable.Empty<SendEmailResponseResult>();
-        public IEnumerable<ISendEmailError> Errors { get; set; } = Enumerable.Empty<SendEmailError>();
+        public IEnumerable<ISendEmailResponseResult> To { get; set; } = new List<SendEmailResponseResult>();
+        public IEnumerable<ISendEmailResponseResult> Cc { get; set; } = new List<SendEmailResponseResult>();
+        public IEnumerable<ISendEmailResponseResult> Bcc { get; set; } = new List<SendEmailResponseResult>();
+        public IEnumerable<ISendEmailError> Errors { get; set; } = new List<SendEmailError>();
     }
 }
